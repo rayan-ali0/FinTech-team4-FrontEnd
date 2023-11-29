@@ -6,6 +6,13 @@ html {
     scroll-behavior: smooth;
 }
 
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
     --main-font-family: 'Rubik', sans-serif;
     --dark-blue:#0C0E2E;
@@ -20,13 +27,9 @@ html {
 
 body {
     font-family: var(--main-font-family);
+    width: 100%;
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
 
 ul {
     list-style: none;

@@ -5,12 +5,15 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect() {
+export default function BasicSelect(props) {
   const [type, setType] = React.useState('');
 
   const handleChange = (event) => {
     setType(event.target.value);
   };
+
+  const values = props.menuItems;
+
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -23,8 +26,9 @@ export default function BasicSelect() {
           label="Type"
           onChange={handleChange}
         >
-          <MenuItem value={"Transaction"}>Transaction</MenuItem>
-          <MenuItem value={"Transfer"}>Transfer</MenuItem>
+          {values.map((item) => {
+            return (<MenuItem key={item} value={item}>{item}</MenuItem>); 
+          })}
         </Select>
       </FormControl>
     </Box>
