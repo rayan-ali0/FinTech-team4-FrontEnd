@@ -1,10 +1,11 @@
 
 import './App.css';
+import Deposit from './Components/Deposit';
 
 function App() {
   return (
       <div>
-        hi
+        <Deposit></Deposit>
       </div>
    
   );
