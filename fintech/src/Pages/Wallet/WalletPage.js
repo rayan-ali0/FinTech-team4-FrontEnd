@@ -8,9 +8,9 @@ export default function WalletPage() {
 
     return (
         <div className={styles.container}>
-            <div style={{ marginBottom: `20px`, color: `#FFF` }} className={styles.sideBar}>
+            {/* <div style={{ marginBottom: `20px`, color: `#FFF` }} className={styles.sideBar}>
                 <h1>SideBar</h1>
-            </div>
+            </div> */}
             <div className={styles.main}>
                 <div className={styles.navBar}>
                     <NavBar />
