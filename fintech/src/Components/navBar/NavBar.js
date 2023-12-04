@@ -87,7 +87,8 @@ export default function NavBar() {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
+  
+    anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -160,8 +161,8 @@ export default function NavBar() {
   );
 /***************************************** */
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  style={{backgroundColor:`#0C0E2E`}}
+    <Box sx={{ flexGrow: 1 ,color:"white"}}>
+      <AppBar   style={{backgroundColor:`#0C0E2E`, color:"white", width:"88%", float:"right"}}
 >
         <Toolbar>
           {/* <IconButton

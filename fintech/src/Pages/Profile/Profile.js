@@ -14,7 +14,7 @@ const Profile = () => {
     <div className={Styles.mid}>
       
     <div className={Styles.pic}>
-        <img src={background} className={Styles.img}></img>
+        {/* <img src={background} className={Styles.img}></img> */}
     </div>
     <div className={Styles.left}>
       <form  className={Styles.form} style={{display:"flex", flexDirection:"column",  color:"white" , width:"60%", height:"80%"}}>
@@ -23,26 +23,26 @@ const Profile = () => {
        <Typography  variant="h4" sx={{alignSelf:"center" ,color:"white" }}>
         <img src={Pic} className={Styles.image}></img>
        </Typography>
-       <Button sx={{color:"#7A7A7A",alignSelf:"center", backgroundColor:"transparent", borderRadius:"8px", height:"25px",width:"15rem", marginBottom:"1rem",  '&:hover': {
+       <Button sx={{color:"white",alignSelf:"center", backgroundColor:"transparent", borderRadius:"8px", height:"25px",width:"15rem", marginBottom:"1rem",  '&:hover': {
       backgroundColor: "#4566C1",color:"white"}}}>update photo</Button>
          <TextField
          placeholder='Username'
 
          variant='outlined'
-         sx={{width:"100%" ,backgroundColor:"transparent", color:"white", borderRadius:"10px" , height:"3rem",marginBottom:"1rem",}} 
+         sx={{width:"100%" ,backgroundColor:"white", color:"white", borderRadius:"10px" , height:"3rem",marginBottom:"1rem",}} 
         ></TextField>
            <TextField
          placeholder='Email'
 
          variant='outlined'
-         sx={{width:"100%" ,backgroundColor:"transparent", color:"white", borderRadius:"10px" , height:"3rem",marginBottom:"1rem",}} 
+         sx={{width:"100%" ,backgroundColor:"white", color:"white", borderRadius:"10px" , height:"3rem",marginBottom:"1rem",}} 
         ></TextField>
        
          <TextField
          type='password'
          placeholder="Password"
         //  variant='outlined'
-         sx={{width:"100%" ,backgroundColor:"transparent", color:"white", borderRadius:"10px",height:"3rem", marginBottom:"3rem"}} 
+         sx={{width:"100%" ,backgroundColor:"white", color:"white", borderRadius:"10px",height:"3rem", marginBottom:"3rem"}} 
         ></TextField>
         <Button sx={{color:"white", backgroundColor:"#253B8E", borderRadius:"8px", height:"45px", marginBottom:"1rem",  '&:hover': {
       backgroundColor: "#4566C1",}}}>submit</Button>

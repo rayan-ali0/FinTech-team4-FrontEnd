@@ -12,9 +12,9 @@ export default function WalletPage() {
                 <h1>SideBar</h1>
             </div> */}
             <div className={styles.main}>
-                <div className={styles.navBar}>
+                {/* <div className={styles.navBar}>
                     <NavBar />
-                </div  >
+                </div  > */}
                 <div className={styles.walletHolderMain}>
                     <Wallet />
                 </div>

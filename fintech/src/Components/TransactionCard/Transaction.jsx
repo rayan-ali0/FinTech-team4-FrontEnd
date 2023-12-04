@@ -32,7 +32,7 @@ export default function Transaction() {
     const rootStyle ={
         padding: "0px auto",
          width:"90vw", 
-         maxWidth:"900px",
+        //  maxWidth:"900px",
          paddingBottom:'20px',
          borderRadius: "30px",
     }
@@ -43,6 +43,8 @@ export default function Transaction() {
     // }, []);
 
   return (
+    <div className={Styles.transactionMain}>
+
     <Container className={Styles.container} style={rootStyle}>
         <h2>{type}</h2>
 
@@ -181,6 +183,8 @@ export default function Transaction() {
 
         </form>
     </Container>
+    </div>
+
   )
 }
 
