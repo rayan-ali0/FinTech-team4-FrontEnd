@@ -1,9 +1,11 @@
-import { Box, Button, Modal, TextField, Typography } from '@mui/material'
+import { Box, Button, InputAdornment, Modal, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import Styles from './Styles.module.css';
 
 export default function () {
 
     const [open,setOpen] = useState(false);
+    const [error, setError] = useState("false")
     const handleOpen = ()=>{
         setOpen(!open)
     }
@@ -22,8 +24,18 @@ export default function () {
         borderRadius: 5,
         boxShadow: 24,
         p: 4,
-
     }
+
+    const [amount,setAmount] = useState(false);
+    const [formInfo, setFormInfo] = useState({
+      amount : 0,
+      type: "Deposit",
+      address : "",
+      description: "Deposit into account",
+      promoCode: "",
+  })
+
+    const myfield = {};
 
   return (
     <div>
@@ -35,16 +47,53 @@ export default function () {
   aria-describedby="modal-modal-description"
 >
   <Box sx={style}>
-   <div>
-    <h2>Deposit</h2>
-    <TextField
+   <div className={Styles.container}>
+    <h2>Deposit into your account</h2>
     
-    />
-    <Button
-    />
+    <form noValidate autoComplete='off' onSubmit={(e)=>handleSubmit(e,formInfo, error)} className={Styles.form}>
+
+<TextField 
+            sx={myfield}
+            className={Styles.fields}
+            label="Amount"
+            variant='outlined'
+            color= 'primary'
+            size='small'
+            fullWidth
+            focused
+            required
+            error={error}
+            onChange={(event) => {
+              handleOnlyNumbers(event, setAmount,setError);
+              setFormInfo({...formInfo, amount: parseFloat(event.target.value)})
+           }}
+            InputProps={{
+                startAdornment: <InputAdornment position="start"><Typography style={error?{color: "red"} :{ color: 'white' }}>$</Typography></InputAdornment>,
+                style: {color: 'white'}
+            }}
+            InputLabelProps={{
+                style: { color: 'white' },
+              }}
+            />
+
+            <Button
+        style={{marginTop:"20px"}}
+        className={Styles.button}
+        type='submit'
+        color='secondary'
+        variant='contained'
+        >Deposit</Button>
+
+</form>
+
    </div>
   </Box>
 </Modal>
     </div>
   )
 }
+
+
+
+
+
