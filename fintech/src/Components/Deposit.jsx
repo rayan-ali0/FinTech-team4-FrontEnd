@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Typography } from '@mui/material'
+import { Box, Button, Modal, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
 export default function () {
@@ -17,8 +17,8 @@ export default function () {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 400,
-        bgcolor: "#2196f3",
+        width: "500px",
+        bgcolor: "#190D60",
         borderRadius: 5,
         boxShadow: 24,
         p: 4,
@@ -35,7 +35,14 @@ export default function () {
   aria-describedby="modal-modal-description"
 >
   <Box sx={style}>
-   <p>hello babies</p>
+   <div>
+    <h2>Deposit</h2>
+    <TextField
+    
+    />
+    <Button
+    />
+   </div>
   </Box>
 </Modal>
     </div>
