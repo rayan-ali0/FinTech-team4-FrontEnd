@@ -1,23 +1,23 @@
-import Navbar from '../Components/Navbar'
-import Sidebar from '../Components/sidebar/Sidebar'
-import Overview from '../Pages/Overview/Overview'
-import Profile from '../Pages/Profile/Profile'
+// import Navbar from '../Components/Navbar'
+// import Sidebar from '../Components/sidebar/Sidebar'
+// import Overview from '../Pages/Overview/Overview'
+// import Profile from '../Pages/Profile/Profile'
 import Signin from '../Pages/Signin/Signin'
 import Signup from '../Pages/Signup/Signup'
-import Transaction from '../Pages/Transactions/Transaction'
-import TransferHistory from '../Pages/TransferHistory/TransferHistory'
-import Users from '../Pages/Users/Users'
-import Wallet from '../Pages/Wallet/Wallet'
-import Withdraw from '../Pages/Withdraw/Withdraw'
+// import Transaction from '../Pages/Transactions/Transaction'
+// import TransferHistory from '../Pages/TransferHistory/TransferHistory'
+// import Users from '../Pages/Users/Users'
+// import Wallet from '../Pages/Wallet/Wallet'
+// import Withdraw from '../Pages/Withdraw/Withdraw'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
 
 
 const Layout =()=>{
     return(
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     <Outlet />
-    <Sidebar />
+    {/* <Sidebar /> */}
     </>
     )
   }
@@ -28,32 +28,32 @@ const Layout =()=>{
         children:[
             {
                 path:"/",
-                element:<Overview />
+                // element:<Overview />
             },
             {
                 path:'/profile',
-                element:<Profile />
+                // element:<Profile />
             },
          
             {
                 path:'/transaction',
-                element:<Transaction />
+                // element:<Transaction />
             },
             {
                 path:'/transferhistory',
-                element:<TransferHistory />
+                // element:<TransferHistory />
             },
             {
                 path:'/users',
-                element:<Users />
+                // element:<Users />
             },
             {
                 path:'/wallet',
-                element:<Wallet />
+                // element:<Wallet />
             },
             {
                 path:'/withdraw',
-                element:<Withdraw />
+                // element:<Withdraw />
             },
 
         ]
