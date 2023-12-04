@@ -1,0 +1,36 @@
+.cardContainer{
+width:400px;
+height:216px;
+border-radius: 30px;
+border: 2px solid #2857FE;
+background: linear-gradient(209deg, rgba(0, 44, 201, 0.71) 5.62%, rgba(64, 64, 64, 0.33) 82.8%);
+display: flex;
+height: 100%;
+}
+
+.chartSection , .nbSection{
+    width:50%;
+    border-radius: 30px;
+}
+/* .chartSection{
+    border: 1px solid red;
+   
+} */
+.nbSection{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+}
+.moneyTransfer , .moneyTransferAmount{
+    height: 30%;
+    /* border: 1px solid red; */
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    
+}

@@ -1,0 +1,38 @@
+.container {
+        display: flex;
+    height: 98vh;
+    color: #FFF;
+}
+
+.sideBar {
+    width: 15%;
+    height: 100%;
+}
+
+.main {
+    width: 85%;
+    height: 100%;
+    flex-direction: column;
+
+}
+
+.navBar {
+    margin-bottom: 1em;
+}
+
+.table {
+    margin-top: 4em;
+    width: 80%;
+}
+
+.walletHolderMain {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    border-radius: 30px;
+    /* background-color: var(--gradiend-color); */
+    background-color: #180f4e;
+    width: 90%;
+    }
