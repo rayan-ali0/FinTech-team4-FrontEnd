@@ -1,6 +1,8 @@
 .cardContainer{
-width:400px;
-height:216px;
+/* width:400px;
+height:216px; */
+width:25em;
+height:13.5em;
 border-radius: 30px;
 /* border: 2px solid #2857FE; */
 background: linear-gradient(209deg, rgba(0, 44, 201, 0.71) 5.62%, rgba(64, 64, 64, 0.33) 82.8%);
@@ -33,4 +35,12 @@ height: 100%;
     align-items: center;
 
     
+}
+
+@media (max-width:1600px){
+    .cardContainer{
+       
+        width:22em;
+        height:100%
+    }
 }

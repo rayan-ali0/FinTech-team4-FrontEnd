@@ -1,17 +1,16 @@
-.container {
+/* .container {
         display: flex;
     height: 100vh;
     color: #FFF;
     width: 85%;
-    /* border: 1px solid red; */
     float: right;
     background-color:var(--dark-blue)
-}
-
+} */
+/* 
 .sideBar {
     width: 15%;
     height: 100%;
-}
+} */
 
 .main {
     width: 100%;
@@ -21,7 +20,7 @@
     justify-content: center;
     align-items: center;
     
-
+/* border: 3px solid red; */
 }
 
 .navBar {
@@ -45,4 +44,16 @@
     /* background-color: var(--gradiend-color); */
     background-color: #180f4e;
     width: 85%;
+    border: 3px solid red;
+
+    }
+
+    @media (max-width:1350px) {
+        .walletHolderMain{
+            width: 100%;
+        }
+        .main{
+            /* height: auto; */
+            margin: 0 auto;
+        }
     }
