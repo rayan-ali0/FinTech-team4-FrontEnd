@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom';
 import Transaction from './Components/TransactionCard/Transaction';
 // import TransactionCard from './Components/TransactionCard/TransactionCard.jsx';
 import { ThemeProvider, createTheme,  } from '@mui/material';
+import Deposit from './Components/depositModal/Deposit';
 
 function App() {
 
