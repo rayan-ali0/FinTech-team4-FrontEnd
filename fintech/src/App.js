@@ -7,6 +7,7 @@ import Transaction from './Components/TransactionCard/Transaction';
 // import TransactionCard from './Components/TransactionCard/TransactionCard.jsx';
 import { ThemeProvider, createTheme,  } from '@mui/material';
 import Deposit from './Components/depositModal/Deposit';
+import { UserProvider } from './Auth/UserContext.js';
 
 function App() {
 
@@ -23,11 +24,13 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
+      <UserProvider>
       <div className='App'>
         <div className='container'>
           <RouterProvider router={router} />
         </div>
       </div>
+        </UserProvider>
       </ThemeProvider>   
   );
 }

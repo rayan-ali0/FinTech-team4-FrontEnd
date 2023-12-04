@@ -37,16 +37,16 @@ const Layout =()=>{
         children:[
             {
                 path:"/",
-                element:<Overview />
+                // element:<Overview />
             },
             {
                 path:'/profile',
-                element:<Profile />
+                // element:<Profile />
             },
          
             {
                 path:'/transaction',
-                element:<Transaction />
+                // element:<Transaction />
             },
             // {
             //     path:'/transferhistory',
@@ -58,7 +58,7 @@ const Layout =()=>{
             // },
             {
                 path:'/wallet',
-                element:<Wallet />
+                // element:<Wallet />
             },
             // {
             //     path:'/withdraw',
