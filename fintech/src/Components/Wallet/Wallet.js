@@ -4,7 +4,7 @@ import WalletCards from '../../Components/WalletCards/WalletCards';
 import crypto from '../../assets/images/crypto.png'
 import dollar from '../../assets/images/dollar.png'
 import Button from '@mui/material/Button';
-
+import DashCards from '../dashCards/DashCards';
 export default function Wallet() {
     const useStyle = {
         hoverBtn: {
@@ -120,7 +120,8 @@ export default function Wallet() {
                     <div className={styles.chartsHolder} >
                         <WalletCards />
                         <WalletCards />
-                        <WalletCards />
+                        {/* <WalletCards /> */}
+                        <DashCards/>
                     </div>
     </div>
   )

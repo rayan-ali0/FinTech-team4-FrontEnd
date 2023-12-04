@@ -1,10 +1,10 @@
 
 import './App.css';
-
+import DataGridDemo from './Components/Table/Table.js';
 function App() {
   return (
       <div>
-        hi
+        <DataGridDemo/>
       </div>
    
   );
