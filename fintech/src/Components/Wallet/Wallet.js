@@ -5,6 +5,10 @@ import crypto from '../../assets/images/crypto.png'
 import dollar from '../../assets/images/dollar.png'
 import Button from '@mui/material/Button';
 import DashCards from '../dashCards/DashCards';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 export default function Wallet() {
     const useStyle = {
         hoverBtn: {
@@ -25,7 +29,7 @@ export default function Wallet() {
                             <article className={styles.actions}>
                                 <div className={styles.balanceCurrencySpan}>
                                     <h2 className={`${styles.walletTitles} ${styles.titleInline}`}>Total Balance</h2>
-                                    <span className={styles.currency}>USD</span>
+                                    <span className={styles.currencyDiv}>USD</span>
                                 </div>
                                 <div className={styles.balanceSpan}>
                                     <span>$2578.55</span>
@@ -35,8 +39,8 @@ export default function Wallet() {
                                     <span className={styles.actionbtn}>Withdraw</span>
                                     <span className={styles.actionbtn}>Transfer</span> */}
                                     <Button variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%` }}   >Withdraw</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%` }} >     Transfer
+                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%`,color:"white" }}   >Withdraw</Button>
+                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%`,color:"white" }} >     Transfer
                                     </Button>
 
                                 </div>
@@ -75,7 +79,7 @@ export default function Wallet() {
                             </article>
                             <article className={styles.recents}>
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}>X</span>
+                                    <span className={styles.recentArrow}><SouthIcon sx={{color:'green',fontSize:'1.8em'}}/> </span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -83,7 +87,7 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}>X</span>
+                                    <span className={styles.recentArrow}><NorthIcon sx={{color:'red',fontSize:'1.8em'}}/></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -91,7 +95,7 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}>X</span>
+                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{color:'white',fontSize:'1.8em'}}/></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -99,7 +103,7 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}>X</span>
+                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{color:'white',fontSize:'1.8em'}}/></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -107,7 +111,7 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}>X</span>
+                                    <span className={styles.recentArrow}> <SouthIcon sx={{color:'green',fontSize:'1.8em'}}/></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>

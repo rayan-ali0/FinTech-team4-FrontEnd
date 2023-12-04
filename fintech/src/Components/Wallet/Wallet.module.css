@@ -9,6 +9,7 @@
     background-color: var(--gradiend-color);
     padding: 2em;
     width: 100%;
+    /* border: 1px solid red; */
 }
 .chartsHolder {
     display: flex;
@@ -30,6 +31,8 @@
 .recentHolder {
     height: 100%;
     /* padding: 0.5em; */
+    /* border: 1px solid red; */
+
 
 }
 
@@ -80,15 +83,20 @@
 .walletTitles {
     font-weight: 400;
     font-size: 1.6em;
+    /* border: 1px solid red; */
+    padding: 0;
+    display: inline;
+    height: 100%;
 }
 
 /* .titleInline {
     display: inline-block;
 } */
 
-.currency {
+.currencyDiv {
     width: 4.5em;
-    height: 1.5em;
+    /* height: 1.5em; */
+    height: auto;
     display: inline-flex;
     /* background-color: rgba(77, 77, 79, 0.31); */
     background-color: #4D4D4F;
@@ -98,12 +106,15 @@
     align-items: center;
     border-radius: 5px;
     font-weight: normal;
+    /* border: 1px solid red; */
 }
 
 .balanceCurrencySpan {
     /* border: 1px solid red; */
     display: flex;
     gap: 1em;
+    height: 20%;
+    /* align-items: center; */
 }
 
 .balanceSpan,
@@ -206,7 +217,7 @@ margin: 0 auto;
    
 }
 .recentArrow{
-    border: 3px solid #FFF;
+    /* border: 3px solid #FFF; */
     width:2.5em;
     height: 2.5em;
     border-radius: 14px;

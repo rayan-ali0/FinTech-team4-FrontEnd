@@ -1,4 +1,4 @@
-import Navbar from '../Components/Navbar'
+import Navbar from "../Components/navBar/NavBar"
 import Sidebar from '../Components/sidebar/Sidebar'
 import Overview from '../Pages/Overview/Overview'
 import Profile from '../Pages/Profile/Profile'

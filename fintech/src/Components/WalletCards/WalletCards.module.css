@@ -2,7 +2,7 @@
 width:400px;
 height:216px;
 border-radius: 30px;
-border: 2px solid #2857FE;
+/* border: 2px solid #2857FE; */
 background: linear-gradient(209deg, rgba(0, 44, 201, 0.71) 5.62%, rgba(64, 64, 64, 0.33) 82.8%);
 display: flex;
 height: 100%;
