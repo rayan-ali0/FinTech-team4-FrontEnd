@@ -1,7 +1,11 @@
 .container {
         display: flex;
-    height: 98vh;
+    height: 100vh;
     color: #FFF;
+    width: 88%;
+    /* border: 1px solid red; */
+    float: right;
+    background-color:var(--dark-blue)
 }
 
 .sideBar {
@@ -10,7 +14,7 @@
 }
 
 .main {
-    width: 85%;
+    width: 100%;
     height: 100%;
     flex-direction: column;
 
@@ -18,6 +22,7 @@
 
 .navBar {
     margin-bottom: 1em;
+    width: 100%;
 }
 
 .table {

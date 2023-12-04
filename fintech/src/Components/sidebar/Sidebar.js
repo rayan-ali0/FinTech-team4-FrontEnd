@@ -49,7 +49,7 @@ export default function ClippedDrawer() {
         }}
       >
         <Toolbar>
-          <div style={{  width: '100%', height: '50%', display: 'flex',margin:"0 auto", alignItems: 'center',padding:"0px", justifyContent: 'center', marginLeft:"-10px", color:"#a0a9a2", fontFamily:"Rubik, sans-serif" , fontSize:"25px",fontWeight:"bold"}}>
+          <div style={{  width: '100%', height: '50%', display: 'flex',margin:"20px auto", alignItems: 'center',padding:"0px", justifyContent: 'center', marginLeft:"-10px", color:"#a0a9a2", fontFamily:"Rubik, sans-serif" , fontSize:"25px",fontWeight:"bold"}}>
             Digital Wallet
           </div>
         </Toolbar>
