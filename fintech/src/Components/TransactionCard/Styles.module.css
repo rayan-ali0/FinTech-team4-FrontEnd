@@ -1,0 +1,75 @@
+.container{
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    background: linear-gradient(263deg, #6D73D4 -6.12%, rgba(54, 57, 148, 0.88) 17.42%, rgba(18, 14, 79, 0.61) 66.72%, rgba(22, 9, 125, 0.39) 114.01%, rgba(28, 0, 203, 0.00) 167.53%);
+}
+
+ h2{
+    color: white;
+    padding: 40px 0px;
+}
+
+
+.button{
+    display: flex;
+    align-items: center;
+    max-width: 30vw;
+    width: 300px;
+    min-width: 50px;
+    text-wrap: nowrap;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: none;
+}
+
+.topTexts{
+    display: flex;
+    width: 100%;
+    margin: 20px auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.topTexts .fields:first-child{
+    margin: auto 10px auto 0px;
+    width: 45%;
+}
+.topTexts .fields:last-child{
+    margin: auto 0px auto 10px;
+    width: 45%;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 15px auto;
+    width: 100%;
+}
+
+.fields {
+    margin: 20px auto;
+    display: block;
+    width: 100%;
+    border-color: "#00f";
+    color: #fff;
+}
+
+
+@media ( max-width: 380px) {
+    .topTexts{
+        flex-direction: column; 
+        /* background-color: red; */
+    }
+    .topTexts .fields:first-child{
+        margin: 10px  auto;
+        width: 100%;
+    }
+    .topTexts .fields:last-child{
+        margin: 10px  auto;
+        width: 100%;
+    }
+}
+
