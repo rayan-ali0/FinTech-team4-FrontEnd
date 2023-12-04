@@ -1,6 +1,6 @@
 
 import './App.css';
-import Deposit from './Components/Deposit';
+import Deposit from './Components/depositModal/Deposit';
 
 function App() {
   return (

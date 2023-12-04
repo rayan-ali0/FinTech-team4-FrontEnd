@@ -1,7 +1,7 @@
 import { Box, Button, InputAdornment, Modal, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import Styles from './Styles.module.css';
-import { handleSubmit, handleOnlyNumbers } from './utils.js';
+import { handleSubmit, handleOnlyNumbers } from '../utils.js';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 export default function () {
 
