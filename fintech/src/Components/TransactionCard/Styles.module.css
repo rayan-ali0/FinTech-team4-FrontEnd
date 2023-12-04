@@ -1,8 +1,20 @@
+.transactionMain{
+    width: 100%;
+    background-color: var(--dark-blue);
+    height: 100vh;
+    padding-top:150px ;
+    /* border: 1px solid red; */
+
+}
+
 .container{
-    margin: 0px auto;
+
+    /* margin:10rem auto; */
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 90%;
+    height: 70%;
     background: linear-gradient(263deg, #6D73D4 -6.12%, rgba(54, 57, 148, 0.88) 17.42%, rgba(18, 14, 79, 0.61) 66.72%, rgba(22, 9, 125, 0.39) 114.01%, rgba(28, 0, 203, 0.00) 167.53%);
 }
 

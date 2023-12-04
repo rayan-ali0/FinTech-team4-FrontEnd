@@ -9,6 +9,9 @@ export default function WalletPage() {
     return (
 
             <div className={styles.main}>
+                {/* <div className={styles.navBar}>
+                    <NavBar />
+                </div  > */}
                 <div className={styles.walletHolderMain}>
                     <Wallet />
                 </div>

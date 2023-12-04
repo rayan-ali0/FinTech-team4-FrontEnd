@@ -1,0 +1,11 @@
+/* .appMain{
+    display: flex;
+    gap: 0;
+} */
+.SidebarHolder{
+    /* border: 3px solid red; */
+width: 15%;
+}
+.bodyHolder{
+width: 80%;
+}

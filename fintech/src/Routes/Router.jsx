@@ -4,37 +4,30 @@ import Overview from '../Pages/Overview/Overview'
 import Profile from '../Pages/Profile/Profile'
 import Signin from '../Pages/Signin/Signin'
 import Signup from '../Pages/Signup/Signup'
-// import Transaction from '../Pages/Transactions/Transaction'
+import dashboard from "../Pages/Dashboard/dashboard"
+import Transaction from '../Components/TransactionCard/Transaction'
 // import TransferHistory from '../Pages/TransferHistory/TransferHistory'
 // import Users from '../Pages/Users/Users'
 import Wallet from '../Pages/Wallet/WalletPage'
 // import Withdraw from '../Pages/Withdraw/Withdraw'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
-import styles from './Router.module.css'
-import NotFound from '../Pages/NotFound'
-import NotAuthorized from "../Pages/NotAuthorized"
+import styles from './Routes.module.css'
+
 const Layout =()=>{
     return(
-    // <>
-    // <Navbar />
-    // <Outlet />
-    // <Sidebar />
-    // </>
-       <div className={styles.bodyHolder}>
-       <Sidebar />
-        <div className={styles.pageHolder}>
-            <div className={styles.navHolder}>
-            <Navbar  />
-            </div>
-            <div className={styles.componentHolder}>
-            <Outlet />
+    <div className={styles.appMain} >
+        {/* <div className={styles.SidebarHolder}>
+        <Sidebar />
 
-            </div>
-       
         </div>
-       
-       {/* <Sidebar /> */}
-       </div>
+        <div className={styles.bodyHolder}>
+        <Navbar />
+    <Outlet />
+        </div> */}
+    <Navbar />
+    <Outlet />
+    <Sidebar />
+    </div>
     )
   }
   const router = createBrowserRouter([
@@ -51,10 +44,10 @@ const Layout =()=>{
                 element:<Profile />
             },
          
-            // {
-            //     path:'/transaction',
-            //     element:<Transaction />
-            // },
+            {
+                path:'/transaction',
+                element:<Transaction />
+            },
             // {
             //     path:'/transferhistory',
             //     element:<TransferHistory />
