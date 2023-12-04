@@ -1,17 +1,21 @@
 import { Box, Button, InputAdornment, Modal, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import Styles from './Styles.module.css';
-
+import { handleSubmit, handleOnlyNumbers } from './utils.js';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 export default function () {
 
     const [open,setOpen] = useState(false);
-    const [error, setError] = useState("false")
+    const [error, setError] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
+
     const handleOpen = ()=>{
-        setOpen(!open)
+        setOpen(true)
     }
 
     const handleClose = ()=>{
-        setOpen(!open)
+        setOpen(false)
+        setConfirmation(false);
     }
 
     const style={
@@ -30,7 +34,7 @@ export default function () {
     const [formInfo, setFormInfo] = useState({
       amount : 0,
       type: "Deposit",
-      address : "",
+      address : "myAddress",
       description: "Deposit into account",
       promoCode: "",
   })
@@ -39,7 +43,7 @@ export default function () {
 
   return (
     <div>
-        <Button onClick={handleOpen}>Open modal</Button>
+        <Button onClick={handleOpen}>Deposit</Button>
 <Modal
   open={open}
   onClose={handleClose}
@@ -50,7 +54,7 @@ export default function () {
    <div className={Styles.container}>
     <h2>Deposit into your account</h2>
     
-    <form noValidate autoComplete='off' onSubmit={(e)=>handleSubmit(e,formInfo, error)} className={Styles.form}>
+    <form noValidate autoComplete='off' onSubmit={(e)=>{handleSubmit(e,formInfo, error); setConfirmation(true)}} className={Styles.form}>
 
 <TextField 
             sx={myfield}
@@ -69,20 +73,32 @@ export default function () {
            }}
             InputProps={{
                 startAdornment: <InputAdornment position="start"><Typography style={error?{color: "red"} :{ color: 'white' }}>$</Typography></InputAdornment>,
-                style: {color: 'white'}
+                style: {color: 'white'},
+                readOnly: confirmation,
+                
             }}
             InputLabelProps={{
                 style: { color: 'white' },
+                
               }}
             />
 
+            <div className={Styles.confirmationSection}>
             <Button
-        style={{marginTop:"20px"}}
         className={Styles.button}
         type='submit'
         color='secondary'
         variant='contained'
         >Deposit</Button>
+
+        {confirmation ? 
+        <CheckBoxIcon 
+        variant='outlined' 
+        color='success'
+        ></CheckBoxIcon>        
+         : ""}
+
+        </div>
 
 </form>
 

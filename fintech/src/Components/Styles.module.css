@@ -1,7 +1,14 @@
-.button{
-
+h2{
+    margin-bottom: 30px;
+    color: white;
+    font-size: 1.8em;
 }
 
-.fields{
-    
+.confirmationSection{
+    display: flex;
+    align-items: center;
+    /* align-items: center; */
+        margin-top: 20px;
+        gap: 20px;
+
 }
