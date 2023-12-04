@@ -1,0 +1,31 @@
+.bodyHolder{
+    border: 1px solid red;
+    width:100% ;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    background-color: var(--dark-blue);
+}
+
+.pageHolder{
+    /* border: 1px solid black; */
+    /* flex:6; */
+    width: 90%;
+    margin: 0 0 0 auto;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    height: 100;
+
+}
+.navHolder{
+    /* border: 5px solid white; */
+    height: 8%;
+}
+.componentHolder{
+    /* border: 1px solid white; */
+    /* height: 90vh; */
+    padding: 0;
+    height: 93%;
+    
+}

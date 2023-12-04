@@ -19,6 +19,11 @@ import cross from '../../assets/images/crossed.png'
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+/*********** */
+
+import { useLocation } from 'react-router-dom';
+import { capitalize } from '@mui/material';
+/*********** */
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,7 +65,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export default function NavBar() {
+/*********** */
+const location=useLocation();
+var currentLocation= "Overview";
+if(location.pathname.substring(1)){
+   currentLocation= capitalizeFirstLetter(location.pathname.substring(1));
+}
+
+/*********** */
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -160,7 +178,7 @@ export default function NavBar() {
   );
 /***************************************** */
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,width:"100%",color:"white"}}>
       <AppBar position="static"  style={{backgroundColor:`#0C0E2E`}}
 >
         <Toolbar>
@@ -179,7 +197,7 @@ export default function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' },fontSize:`2em` }}
           >
-            Transactions
+            {currentLocation}
           </Typography>
           {/* <Search>
             <SearchIconWrapper>
@@ -214,7 +232,7 @@ export default function NavBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              color="white"
             >
               <PersonOutlineOutlinedIcon sx={{width:'45px',height:'45px'}}/>
             </IconButton>

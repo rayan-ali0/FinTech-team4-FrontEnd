@@ -10,15 +10,31 @@ import Signup from '../Pages/Signup/Signup'
 import Wallet from '../Pages/Wallet/WalletPage'
 // import Withdraw from '../Pages/Withdraw/Withdraw'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
-
-
+import styles from './Router.module.css'
+import NotFound from '../Pages/NotFound'
+import NotAuthorized from "../Pages/NotAuthorized"
 const Layout =()=>{
     return(
-    <>
-    <Navbar />
-    <Outlet />
-    <Sidebar />
-    </>
+    // <>
+    // <Navbar />
+    // <Outlet />
+    // <Sidebar />
+    // </>
+       <div className={styles.bodyHolder}>
+       <Sidebar />
+        <div className={styles.pageHolder}>
+            <div className={styles.navHolder}>
+            <Navbar  />
+            </div>
+            <div className={styles.componentHolder}>
+            <Outlet />
+
+            </div>
+       
+        </div>
+       
+       {/* <Sidebar /> */}
+       </div>
     )
   }
   const router = createBrowserRouter([
@@ -55,7 +71,7 @@ const Layout =()=>{
             //     path:'/withdraw',
             //     element:<Withdraw />
             // },
-
+          
         ]
     },
     
@@ -66,6 +82,14 @@ const Layout =()=>{
         {
             path:'/signup',
             element:<Signup />
+        },
+        {
+            path:'/*',
+            element:<NotFound />
+        },
+        {
+            path:'/au',
+            element:<NotAuthorized />
         },
     
     
