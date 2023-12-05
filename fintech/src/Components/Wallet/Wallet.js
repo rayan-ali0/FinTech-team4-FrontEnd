@@ -19,6 +19,9 @@ export default function Wallet() {
             '&:hover': {
                 backgroundColor: `#ffef61 !important`
             },
+            '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },
+            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+
         },
     }
   return (
@@ -39,8 +42,12 @@ export default function Wallet() {
                                     <span className={styles.actionbtn}>Withdraw</span>
                                     <span className={styles.actionbtn}>Transfer</span> */}
                                     <Button variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%`,color:"white" }}   >Withdraw</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `25%`,color:"white" }} >     Transfer
+                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`,color:"white" ,       '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+
+}}   >Withdraw</Button>
+                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`,color:"white" ,            '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+
+}} >     Transfer
                                     </Button>
 
                                 </div>
@@ -124,8 +131,7 @@ export default function Wallet() {
                     <div className={styles.chartsHolder} >
                         <WalletCards />
                         <WalletCards />
-                        {/* <WalletCards /> */}
-                        <DashCards/>
+                        <WalletCards />
                     </div>
     </div>
   )

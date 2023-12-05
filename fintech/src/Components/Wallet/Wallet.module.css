@@ -2,28 +2,30 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.8em;
     justify-content: space-between;
     margin: auto;
     border-radius: 30px;
     background-color: var(--gradiend-color);
     padding: 2em;
     width: 100%;
-    /* border: 1px solid red; */
+    /* border: 2px solid red; */
 }
+
 .chartsHolder {
     display: flex;
     justify-content: space-around;
     height: 25%;
+    /* border: 1px solid red; */
 
 }
 
 
 .nbDiv {
     /* border: 1px solid green; */
-    height: 65%;
+    height: 67%;
     display: flex;
-    gap: 1.5em;
+    gap: 1.2em;
 }
 
 
@@ -31,9 +33,10 @@
 .recentHolder {
     height: 100%;
     /* padding: 0.5em; */
-    /* border: 1px solid red; */
-
-
+    /* border: 1px solid yellow;
+    
+    
+    */
 }
 
 .balanceHolder {
@@ -60,7 +63,7 @@
     /* border: 2px solid #000; */
 }
 
-.actions{
+.actions {
     border-bottom: 3px solid #000;
     padding-bottom: 2em;
     justify-content: space-between;
@@ -74,10 +77,10 @@
     flex-direction: column;
 }
 
-.balances{
+.balances {
     padding-top: 1em;
-    justify-content: flex-start;
-    gap:2em;
+    justify-content: space-between;
+    gap: 2em;
 }
 
 .walletTitles {
@@ -137,7 +140,8 @@
     align-items: center;
     justify-content: center;
 }
-.depositBtn{
+
+.depositBtn {
     background-color: #FFE712;
     color: #000;
 }
@@ -166,62 +170,291 @@
     padding: 5px 0px;
 }
 
-.usdtBalance , .usdBalance{
+.usdtBalance,
+.usdBalance {
     /* border: 1px solid red; */
     font-size: 1.4em;
     display: flex;
-justify-content: center;
-align-items: center;
-justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.cryptoLogo{
-    width:37px ;
-    height:32px ;
-}
-.dollarLogo{
-    width:32px ;
-    height:32px ;
+.cryptoLogo {
+    width: 37px;
+    height: 32px;
 }
 
-.cuurencyLogo{
+.dollarLogo {
+    width: 32px;
+    height: 32px;
+}
+
+.cuurencyLogo {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:0.5em
+    gap: 0.5em
 }
-.recentTitle{
+
+.recentTitle {
     /* border: 1px solid #FFF; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.6em;
 }
-.recents{
+
+.recents {
     height: 90%;
     display: flex;
-flex-direction: column;
-gap:1%;
-width: 95%;
-margin: 0 auto;
+    flex-direction: column;
+    gap: 1%;
+    width: 95%;
+    margin: 0 auto;
 
 
 }
-.recentOne{
-   /* border: 1px solid red; */
-   height: 18%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   font-size: 1.3em;
-   
+
+.recentOne {
+    /* border: 1px solid red; */
+    height: 18%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3em;
+
 }
-.recentArrow{
+
+.recentArrow {
     /* border: 3px solid #FFF; */
-    width:2.5em;
+    width: 2.5em;
     height: 2.5em;
     border-radius: 14px;
-display: flex;
-justify-content: center;
-align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:1600px) {
+    .chartsHolder {
+        justify-content: space-between;
+        align-items: center;
+        height: 30%;
+
+
+    }
+
+    .walletHolder {
+        padding: 0.5em;
+        border-radius: 20px;
+        gap: 0
+    }
+}
+
+@media (max-width:1000px) {
+
+
+   
+    .chartsHolder {
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .walletHolder {
+        padding: 0.5em;
+        border-radius: 20px;
+        gap: 1em;
+        justify-content:flex-start;
+    }
+
+    .nbDiv {
+        gap: 0.9em;
+
+    }
+
+    .walletTitles {
+        font-size: 1.4em;
+
+    }
+
+    .currencyDiv {
+        font-size: 1em;
+    }
+
+    .balanceSpan,
+    .actionBtns {
+        font-size: 1.2em;
+        /* border: 1px solid red; */
+    }
+
+    .usdtBalance,
+    .usdBalance {
+        /* border: 1px solid red; */
+        font-size: 1.3em;
+
+    }
+
+    .recentTitle {
+
+        font-size: 1.4em;
+    }
+
+    .recentOne {
+
+        font-size: 1.15em;
+
+    }
+
+    .actions,
+    .balances {
+        /* border: 3px solid #000; */
+        /* height: 100% */
+
+    }
+
+    .balanceHolder,
+    .recentHolder {
+        height: 100%;
+
+
+    }
+
+}
+
+@media (max-width:950px) {
+    .chartsHolder {
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        height: 40%;
+        margin-top: 1em;
+    }
+
+    .walletHolder {
+        padding: 0.4em;
+        gap: 0;
+        height: auto;
+        
+
+    }
+
+    .nbDiv {
+        display: flex;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .balanceHolder {
+        width: 95%;
+        /* border: 1px solid yellow; */
+        display: flex;
+        flex-direction: row;
+        /* gap: 0.8em; */
+        padding: 0.5em;
+        margin: 0 auto;
+
+    }
+
+    .recentHolder {
+        width: 95%;
+        border-top: 3px solid #000;
+        height: 100%;
+        border-left: none;
+        margin: 0 auto;
+        padding: 1em 0.5em 1em 0.5em;
+        border-bottom: 3px solid black;
+    }
+
+    .actions {
+        /* border-right: 3px solid red; */
+        justify-content: space-between;
+        border-right: 3px solid black;
+        border-bottom: none;
+    }
+
+    .actions,
+    .balances {
+        /* border: 1px solid #FFF; */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 0.6em;
+    }
+
+    .balances {
+        /* padding-top: 0em; */
+        justify-content: space-between;
+        gap: 2em;
+    }
+
+    .actionBtns {
+        font-size: 1em;
+    }
+
+    .balanceCurrencySpan {
+        /* border: 1px solid pink; */
+        justify-content: space-between;
+    }
+
+    .recents {
+        height: auto;
+
+    }
+}
+
+@media (max-width:650px) {
+    .currencyDiv {
+        display: none;
+    }
+
+}
+
+@media (max-width:580px) {
+
+    .actions {
+        border-bottom: 3px solid #000;
+        border-right: none;
+        padding-bottom: 1em;
+    }
+
+    .balanceHolder {
+        flex-direction: column;
+    }
+
+    .actions,
+    .balances {
+
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+
+    }
+
+    .balances {
+        padding-top: 1em;
+        /* gap:2em; */
+        gap: 0.6em;
+        /* border: 1px solid gray; */
+    }
+
+    .recents {
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 3%;
+        width: 100%;
+        margin: 0 auto;
+
+
+    }
+
+    .recentOne {
+        font-size: 1em;
+        /* border: 1px solid pink; */
+        width: 100%;
+    }
 }

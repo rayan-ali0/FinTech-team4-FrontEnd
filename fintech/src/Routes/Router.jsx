@@ -4,14 +4,14 @@ import Overview from '../Pages/Overview/Overview'
 import Profile from '../Pages/Profile/Profile'
 import Signin from '../Pages/Signin/Signin'
 import Signup from '../Pages/Signup/Signup'
-import dashboard from "../Pages/Dashboard/dashboard"
-import Transaction from '../Components/TransactionCard/Transaction'
+// import dashboard from "../Pages/Dashboard/dashboard"
+// import Transaction from '../Components/TransactionCard/Transaction'
 // import TransferHistory from '../Pages/TransferHistory/TransferHistory'
 // import Users from '../Pages/Users/Users'
 import Wallet from '../Pages/Wallet/WalletPage'
 // import Withdraw from '../Pages/Withdraw/Withdraw'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
-import styles from './Routes.module.css'
+import styles from './Router.module.css'
 
 const Layout =()=>{
     return(
@@ -76,14 +76,14 @@ const Layout =()=>{
             path:'/signup',
             element:<Signup />
         },
-        {
-            path:'/*',
-            element:<NotFound />
-        },
-        {
-            path:'/au',
-            element:<NotAuthorized />
-        },
+        // {
+        //     path:'/*',
+        //     element:<NotFound />
+        // },
+        // {
+        //     path:'/au',
+        //     element:<NotAuthorized />
+        // },
     
     
   ])

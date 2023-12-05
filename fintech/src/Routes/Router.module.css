@@ -1,6 +1,5 @@
 .bodyHolder{
-    border: 1px solid red;
-    width:100% ;
+    width:100vw;
     margin: 0 auto;
     height: 100vh;
     display: flex;
@@ -23,9 +22,10 @@
     height: 8%;
 }
 .componentHolder{
-    /* border: 1px solid white; */
+    border: 1px solid white;
     /* height: 90vh; */
     padding: 0;
     height: 93%;
+    width: 100%;
     
 }

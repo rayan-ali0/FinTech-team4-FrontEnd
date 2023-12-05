@@ -2,7 +2,7 @@
         display: flex;
     height: 100vh;
     color: #FFF;
-    width: 88%;
+    width: 85%;
     float: right;
     background-color:var(--dark-blue)
 }
@@ -20,7 +20,7 @@
     justify-content: center;
     align-items: center;
     
-
+/* border: 3px solid red; */
 }
 
 .navBar {
@@ -44,4 +44,26 @@
     /* background-color: var(--gradiend-color); */
     background-color: #180f4e;
     width: 85%;
+    /* border: 3px solid green; */
+
+    }
+
+    @media (max-width:1350px) {
+        .walletHolderMain{
+            width: 100%;
+        }
+        .main{
+            /* height: auto; */
+            margin: 0 auto;
+        }
+    }
+    @media (max-width:1000px) {
+        .walletHolderMain{
+            width: 95%;
+            /* height: auto; */
+        }
+        .main{
+            /* height: auto; */
+            /* margin: 0 auto; */
+        }
     }
