@@ -44,7 +44,7 @@
     /* background-color: var(--gradiend-color); */
     background-color: #180f4e;
     width: 85%;
-    border: 3px solid red;
+    /* border: 3px solid green; */
 
     }
 
@@ -55,5 +55,15 @@
         .main{
             /* height: auto; */
             margin: 0 auto;
+        }
+    }
+    @media (max-width:1000px) {
+        .walletHolderMain{
+            width: 95%;
+            /* height: auto; */
+        }
+        .main{
+            /* height: auto; */
+            /* margin: 0 auto; */
         }
     }

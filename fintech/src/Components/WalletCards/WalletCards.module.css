@@ -36,11 +36,47 @@ height: 100%;
 
     
 }
-
-@media (max-width:1600px){
+@media (max-width:1790px){
     .cardContainer{
-       
-        width:22em;
-        height:100%
+
+        width:24em;
+        height:13.2em;
+        /* border:2px solid white */
     }
+    .nbSection{
+
+        font-size: 1.3em;
+ 
+}
+}
+@media (max-width:1650px){
+    .cardContainer{
+
+        width:22em;
+        height:12.2em;
+        /* border:2px solid white */
+    }
+    .nbSection{
+
+        font-size: 1.3em;
+ 
+}
+}
+
+@media (max-width:1500px){
+    .cardContainer{
+        width: 21em;
+        height:12em;
+    }
+    .nbSection{
+        font-size: 1.3em;
+}
+}
+@media (max-width:950px){
+    .cardContainer{
+        width: 20em ;
+        height:12em;
+        margin-bottom:1em
+    }
+
 }
