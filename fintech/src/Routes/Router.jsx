@@ -4,30 +4,37 @@ import Overview from '../Pages/Overview/Overview'
 import Profile from '../Pages/Profile/Profile'
 import Signin from '../Pages/Signin/Signin'
 import Signup from '../Pages/Signup/Signup'
-// import dashboard from "../Pages/Dashboard/dashboard"
-// import Transaction from '../Components/TransactionCard/Transaction'
+// import Transaction from '../Pages/Transactions/Transaction'
 // import TransferHistory from '../Pages/TransferHistory/TransferHistory'
 // import Users from '../Pages/Users/Users'
 import Wallet from '../Pages/Wallet/WalletPage'
 // import Withdraw from '../Pages/Withdraw/Withdraw'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
 import styles from './Router.module.css'
-
+import NotFound from '../Pages/NotFound'
+import NotAuthorized from "../Pages/NotAuthorized"
 const Layout =()=>{
     return(
-    <div className={styles.appMain} >
-        {/* <div className={styles.SidebarHolder}>
-        <Sidebar />
+    // <>
+    // <Navbar />
+    // <Outlet />
+    // <Sidebar />
+    // </>
+       <div className={styles.bodyHolder}>
+       <Sidebar />
+        <div className={styles.pageHolder}>
+            <div className={styles.navHolder}>
+            <Navbar  />
+            </div>
+            <div className={styles.componentHolder}>
+            <Outlet />
 
+            </div>
+       
         </div>
-        <div className={styles.bodyHolder}>
-        <Navbar />
-    <Outlet />
-        </div> */}
-    <Navbar />
-    <Outlet />
-    <Sidebar />
-    </div>
+       
+       {/* <Sidebar /> */}
+       </div>
     )
   }
   const router = createBrowserRouter([
@@ -37,17 +44,17 @@ const Layout =()=>{
         children:[
             {
                 path:"/",
-                // element:<Overview />
+                element:<Overview />
             },
             {
                 path:'/profile',
-                // element:<Profile />
+                element:<Profile />
             },
          
-            {
-                path:'/transaction',
-                // element:<Transaction />
-            },
+            // {
+            //     path:'/transaction',
+            //     element:<Transaction />
+            // },
             // {
             //     path:'/transferhistory',
             //     element:<TransferHistory />
@@ -58,7 +65,7 @@ const Layout =()=>{
             // },
             {
                 path:'/wallet',
-                // element:<Wallet />
+                element:<Wallet />
             },
             // {
             //     path:'/withdraw',
@@ -76,14 +83,14 @@ const Layout =()=>{
             path:'/signup',
             element:<Signup />
         },
-        // {
-        //     path:'/*',
-        //     element:<NotFound />
-        // },
-        // {
-        //     path:'/au',
-        //     element:<NotAuthorized />
-        // },
+        {
+            path:'/*',
+            element:<NotFound />
+        },
+        {
+            path:'/au',
+            element:<NotAuthorized />
+        },
     
     
   ])
