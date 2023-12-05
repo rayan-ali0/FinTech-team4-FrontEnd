@@ -26,7 +26,7 @@ const Signin = () => {
   let name = "";
 
 
-  const  handleLogin = async (e) => {
+  const  handleSignIn = async (e) => {
     e.preventDefault();
 
      if(email && password){
@@ -90,13 +90,13 @@ const Signin = () => {
           <img src={picture} className={Styles.img}></img>
       </div>
       <div className={Styles.left}>
-        <form  noValidate autoComplete='off' onSubmit={(event)=>{handleLogin(event)}}
-        className={Styles.form} style={{display:"flex", flexDirection:"column",  color:"white" , width:"60%", height:"80%"}}>
-         <Typography variant="h3" sx={{alignSelf:"self-start", marginBottom:"1rem"  }}>
+        <form  noValidate autoComplete='off' onSubmit={(event)=>{handleSignIn(event)}}
+        className={Styles.form} style={{display:"flex", flexDirection:"column",  color:"white", height:"80%"}}>
+         <Typography className={Styles.title} variant="h3" sx={{alignSelf:"self-start", marginBottom:"1rem"}}>
           Welcome Back!
          </Typography>
-         <Typography  variant="h4" sx={{alignSelf:"self-start", marginBottom:"3rem" ,color:"white" }}>
-          Login
+         <Typography className={Styles.signIn} variant="h4" sx={{alignSelf:"self-start", marginBottom:"3rem" ,color:"white" }}>
+          Sign in
           
          </Typography>
          
@@ -106,7 +106,7 @@ const Signin = () => {
          </Typography>
            <TextField
            placeholder='Enter Your Email'
-
+           type='email'
            variant='outlined'
            sx={{width:"100%" ,backgroundColor:"#FFF", color:"white", borderRadius:"10px" , height:"3rem",marginBottom:"1rem",'& fieldset':{border:'none'},}}
            onChange={(event)=>{setEmail(event.target.value)}} 
@@ -116,7 +116,7 @@ const Signin = () => {
          </Typography>
            <TextField
            type='password'
-           placeholder="Username"
+           placeholder="Enter Your Password"
           //  variant='outlined'
            sx={{width:"100%" ,backgroundColor:"#FFF", color:"white", borderRadius:"10px",height:"3rem", marginBottom:"3rem",'& fieldset':{border:'none'},}} 
            onChange={(event)=>{setPassword(event.target.value)}} 
