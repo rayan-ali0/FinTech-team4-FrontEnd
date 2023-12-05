@@ -21,10 +21,10 @@ const Layout =()=>{
     // <Sidebar />
     // </>
        <div className={styles.bodyHolder}>
-       {/* <Sidebar /> */}
+       <Sidebar />
         <div className={styles.pageHolder}>
             <div className={styles.navHolder}>
-            {/* <Navbar  /> */}
+            <Navbar  />
             </div>
             <div className={styles.componentHolder}>
             <Outlet />
