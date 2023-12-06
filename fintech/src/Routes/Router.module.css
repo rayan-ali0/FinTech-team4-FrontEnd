@@ -3,7 +3,9 @@
     /* margin: 0 auto; */
     height: 150vh;
     display: flex;
+    gap: 0;
     background-color: var(--dark-blue);
+    margin-top: 0;
 }
 
 .pageHolder{
@@ -19,7 +21,7 @@
 }
 .navHolder{
     /* border: 5px solid white; */
-    height: 8%;
+    height: 5%;
 }
 .componentHolder{
     /* border: 6px solid rgb(199, 51, 51); */
@@ -27,5 +29,7 @@
     padding: 0;
     height: 100vh;
     width: 97%;
+    margin: 0;
+
     
 }
