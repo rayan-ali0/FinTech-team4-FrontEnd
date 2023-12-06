@@ -152,7 +152,7 @@ if(location.pathname.substring(1)){
         <p>Messages</p>
       </MenuItem> */}
       <MenuItem>
-        <IconButton
+        <IconButton sx={{color:"white"}}
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
@@ -197,7 +197,7 @@ if(location.pathname.substring(1)){
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' },fontSize:`2em` }}
+            sx={{ display: { xs: 'none', sm: 'block' },fontSize:`2em`,color:"white" }}
           >
             {currentLocation}
           </Typography>
@@ -217,7 +217,7 @@ if(location.pathname.substring(1)){
                 <MailIcon />
               </Badge>
             </IconButton> */}
-            <IconButton
+            <IconButton sx={{color:"white"}}
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
@@ -227,7 +227,7 @@ if(location.pathname.substring(1)){
                 <NotificationsActiveOutlinedIcon sx={{width:'40px',height:'40px'}}/>
               </Badge>
             </IconButton>
-            <IconButton
+            <IconButton sx={{color:"white"}}
               size="large"
               edge="end"
               aria-label="account of current user"

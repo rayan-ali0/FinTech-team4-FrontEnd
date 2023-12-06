@@ -34,7 +34,7 @@ export default function ClippedDrawer() {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box className={Style.box} sx={{ display: 'flex' }}>
       <CssBaseline />
       <Drawer
         variant="permanent"

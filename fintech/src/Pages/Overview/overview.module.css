@@ -1,0 +1,10 @@
+.all{
+    height: 100vh;
+    background-color: #0C0E2E;
+}
+tspan {
+    fill: white !important
+}
+line {
+    stroke: white !important;
+}
