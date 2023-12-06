@@ -35,6 +35,7 @@
     position: absolute;
     color: white;
     width: 50%;
+    max-width: 600px;
     height: 100%;
     
     display: flex;
@@ -53,3 +54,59 @@
     height: 80%;
     margin: auto;
   }
+
+  .title{
+    font-size: 3em;
+  }
+  .signIn{
+    font-size: 2.5em;
+  }
+
+  .form{
+    width: 60%
+  }
+
+
+@media (max-width: 700px) {
+  .left{
+    /* left: 25%; */
+    position: relative;
+    width: 100%; 
+  }
+
+  .title{
+    font-size: 2.5em;
+  }
+
+  .signIn{
+    font-size: 2em;
+    margin-bottom: 100px;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .title{
+    font-size: 2.2em;
+  }
+
+  .signIn{
+    font-size: 1.5em;
+    margin-bottom: 120px;
+  }
+  .form{
+    width: 90%;
+  }
+}
+
+
+@media (max-width: 580px) {
+  .title{
+    font-size: 2em;
+  }
+
+  .signIn{
+    font-size: 1.3em;
+    margin-bottom: 60px;
+  }
+}
