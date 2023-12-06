@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './WalletPage.module.css'
 import NavBar from '../../Components/navBar/NavBar.js';
 import Wallet from '../../Components/Wallet/Wallet';
 
 
 export default function WalletPage() {
-
+const [userId,setUserId]=useState(1)
     return (
 
             <div className={styles.main}>
@@ -13,7 +13,7 @@ export default function WalletPage() {
                     <NavBar />
                 </div  > */}
                 <div className={styles.walletHolderMain}>
-                    <Wallet />
+                    <Wallet id={userId} />
                 </div>
 
 

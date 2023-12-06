@@ -223,13 +223,50 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.3em;
+    /* height: 18%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-areas:' a b c d e';
+    align-items: center;
+    font-size: 1.3em; */
 
 }
+.info{
+    /* border:1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: auto;
+    
+}
+.recentOne span{
+    /* border:1px solid white */
+}
+.recentArrow{
+    /* grid-area: 'a'; */
+    width: 10%;
+}
+.recentType{
+    
+    width: 25%;
+}
 
+.recentDate{
+    width: 35%;
+
+}
+.recentAmount{
+    width: 15%;
+
+}
+.recentStatus{
+    width: 20%;
+
+}
 .recentArrow {
     /* border: 3px solid #FFF; */
-    width: 2.5em;
-    height: 2.5em;
+    width: 2.3em;
+    height: 2.3em;
     border-radius: 14px;
     display: flex;
     justify-content: center;
