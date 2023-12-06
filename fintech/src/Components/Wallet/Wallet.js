@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Wallet.module.css'
 import WalletCards from '../../Components/WalletCards/WalletCards';
 import crypto from '../../assets/images/crypto.png'
@@ -8,8 +8,47 @@ import DashCards from '../dashCards/DashCards';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import axios from "axios";
+import {} from '../../Components/depositModal/Deposit'
+export default function Wallet({ id }) {
+    const [userId, setUserId] = useState(id)
+    const [userWallet, setUserWallet] = useState()
+    const [userTransactions, setUserTransactions] = useState()
+    const [walletLoading, setWalletLoading] = useState(true)
+    const [recentsLoading, setRecentsLoading] = useState(true)
 
-export default function Wallet() {
+    /*********************/
+    const fetchWallet = (userId) => {
+        axios.get(`${process.env.REACT_APP_PATH}/wallet/readByUser/8`)
+            .then((res) => {
+                setUserWallet(res.data);
+                console.log(res.data)
+                setWalletLoading(false)
+            })
+            .catch((error) => {
+                console.error("Error fetching Wallet:", error);
+            });
+    }
+
+    const fetchRecents = (userId) => {
+        axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction?userId=8`)
+            .then((res) => {
+                setUserTransactions(res.data);
+                console.log(res.data)
+                setRecentsLoading(false)
+            })
+            .catch((error) => {
+                console.error("Error fetching Recents Transactions:", error);
+            });
+    }
+
+
+    useEffect(() => {
+        fetchWallet(userId)
+        fetchRecents()
+    }, [userId]);
+    /******************* */
+
     const useStyle = {
         hoverBtn: {
             background: `#FFE712`,
@@ -19,14 +58,17 @@ export default function Wallet() {
             '&:hover': {
                 backgroundColor: `#ffef61 !important`
             },
-            '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },
-            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+            '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" },
+            '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
         },
     }
-  return (
-    <div className={styles.walletHolder}>
-    <div className={styles.nbDiv}>
+    return (
+        <>
+            {!walletLoading && !recentsLoading ? (
+                <div className={styles.walletHolder}>
+
+                    <div className={styles.nbDiv}>
                         <section className={styles.balanceHolder}>
 
                             <article className={styles.actions}>
@@ -35,19 +77,19 @@ export default function Wallet() {
                                     <span className={styles.currencyDiv}>USD</span>
                                 </div>
                                 <div className={styles.balanceSpan}>
-                                    <span>$2578.55</span>
+                                    <span>{userWallet.usdBalance}</span>
                                 </div>
                                 <div className={styles.actionBtns}>
-                                    {/* <span className={`${styles.actionbtn} ${styles.depositBtn}`}>Deposit</span>
-                                    <span className={styles.actionbtn}>Withdraw</span>
-                                    <span className={styles.actionbtn}>Transfer</span> */}
-                                    <Button variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`,color:"white" ,       '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+                                
+                                    <Button  variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
+                                    <Button variant="contained" sx={{
+                                        background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`, color: "white", '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" }, '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
-}}   >Withdraw</Button>
-                                    <Button variant="contained" sx={{ background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`,color:"white" ,            '@media(max-width: 950px)': { fontSize: '0.8em',width:"30%" },            '@media(max-width: 650px)': { fontSize: '0.7em',width:"32%" }
+                                    }}   >Withdraw</Button>
+                                    <Button variant="contained" sx={{
+                                        background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`, color: "white", '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" }, '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
-}} >     Transfer
+                                    }} >     Transfer
                                     </Button>
 
                                 </div>
@@ -61,7 +103,7 @@ export default function Wallet() {
                                         USDT
                                     </span>
                                     <span className={styles.cuurencyAmount} >
-                                        1500.87
+                                        {userWallet.usdtBalance}
                                     </span>
 
                                 </div>
@@ -71,7 +113,7 @@ export default function Wallet() {
                                         USD
                                     </span>
                                     <span className={styles.cuurencyAmount} >
-                                        1500.87
+                                        {userWallet.usdBalance}
                                     </span>
                                 </div>
                             </article>
@@ -85,8 +127,49 @@ export default function Wallet() {
 
                             </article>
                             <article className={styles.recents}>
-                                <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><SouthIcon sx={{color:'green',fontSize:'1.8em'}}/> </span>
+                                {
+                                    userTransactions.map((transaction,index)=>(
+                                        <div className={styles.recentOne} key={index}>
+                                        <span className={styles.recentArrow}>
+                                            {transaction.type==="deposit"?
+                                            (<SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /> )
+                                            :
+                                            (transaction.type==="transfer"?
+                                            (<NorthIcon sx={{ color: 'green', fontSize: '1.8em' }} />)
+                                            :(
+                                               transaction.status==="declined" ?
+                                               (<SouthIcon sx={{ color: 'red', fontSize: '1.8em' }} />)
+                                               :(
+                                                transaction.status==="accepted"?
+                                                (<SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /> )
+                                               :
+                                               (<MoreHorizIcon sx={{ color: 'white', fontSize: '1.8em' }} />))
+                                            ))
+                                            }
+                                            
+                                            </span>
+                                            <div className={styles.info}>
+                                            <span className={styles.recentType}>{transaction.type}</span>
+                                        <span className={styles.recentDate}>{transaction.createdAt.substring(0,10)}</span>
+                                        {transaction.type==="deposit"?
+                                        (     <span className={styles.recentAmount}>${transaction.amountUSD}</span>
+                                        ):(<span className={styles.recentAmount}>{transaction.amountUSDT}</span>)
+                                        }
+                                        {
+                                           transaction.status==="pending" ?(<span style={{color:"#9C9C9C"}} className={styles.recentStatus}>{transaction.status.charAt(0).toUpperCase()+ transaction.status.slice(1)}</span>):(
+                                            transaction.status==="declined"?(<span className={styles.recentStatus} style={{color:"red"}}>{transaction.status.charAt(0).toUpperCase()+ transaction.status.slice(1)}</span>):(
+                                                <span className={styles.recentStatus} style={{color:"green"}}>{transaction.status.charAt(0).toUpperCase()+ transaction.status.slice(1)}</span>
+                                            )
+                                           )
+                                        }
+                                            </div>
+                                       
+                                        
+                                    </div>
+                                    ))
+                                }
+                                {/* <div className={styles.recentOne}>
+                                    <span className={styles.recentArrow}><SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /> </span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -94,7 +177,23 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><NorthIcon sx={{color:'red',fontSize:'1.8em'}}/></span>
+                                    <span className={styles.recentArrow}><NorthIcon sx={{ color: 'red', fontSize: '1.8em' }} /></span>
+                                    <span>withdraw</span>
+                                    <span>23:10:45</span>
+                                    <span>$44</span>
+                                    <span>pending</span>
+                                </div> */}
+
+                                 {/* <div className={styles.recentOne}>
+                                     <span className={styles.recentArrow}><MoreHorizIcon sx={{ color: 'white', fontSize: '1.8em' }} /></span>
+                                     <span>withdraw</span>
+                                     <span>23:10:45</span>
+                                     <span>$44</span>
+                                     <span>pending</span>
+                                </div>  */}
+
+                                {/* <div className={styles.recentOne}>
+                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{ color: 'white', fontSize: '1.8em' }} /></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
@@ -102,28 +201,12 @@ export default function Wallet() {
                                 </div>
 
                                 <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{color:'white',fontSize:'1.8em'}}/></span>
+                                    <span className={styles.recentArrow}> <SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /></span>
                                     <span>withdraw</span>
                                     <span>23:10:45</span>
                                     <span>$44</span>
                                     <span>pending</span>
-                                </div>
-
-                                <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{color:'white',fontSize:'1.8em'}}/></span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div>
-
-                                <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}> <SouthIcon sx={{color:'green',fontSize:'1.8em'}}/></span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div>
+                                </div> */}
 
                             </article>
                         </section>
@@ -133,6 +216,17 @@ export default function Wallet() {
                         <WalletCards />
                         <WalletCards />
                     </div>
-    </div>
-  )
+                </div>
+
+
+            ) : (
+            <div style={{ height: '100%', width: '100%',display:"flex" ,justifyContent:"center",alignItems:"center"}}> 
+            <h1>
+            LOADING..
+                </h1></div>
+            )
+
+            }
+        </>
+    )
 }

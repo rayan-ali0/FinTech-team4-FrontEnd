@@ -32,10 +32,10 @@
 
   .left{
     flex-direction: column;
-    left: 24rem;
+    /* left: 24rem; */
     align-items: center;
     z-index: 3;
-    position: absolute;
+    /* position: absolute; */
     color: transparent;
     width: 50%;
     height: 100%;
@@ -46,6 +46,9 @@
     fill: linear-gradient(217deg, rgba(40, 190, 254, 0.00) -15.33%, rgba(40, 117, 254, 0.29) 50.27%, rgba(40, 169, 254, 0.56) 50.39%, #2857FE 100.7%);
     background-color: var(--gradiend-color);
     backdrop-filter: blur(25.5px);
+
+    margin: 0 auto;
+    /* border: 1px solid red; */
 
   }
 
@@ -65,4 +68,26 @@
     width: 200x;
     height: 200px;
     border-radius: 100%;
+  }
+
+  @media (max-width:1100px){
+    .left{
+      width: 70%;
+    }
+    .image{
+      width: 150x;
+      height: 150px;
+    }
+  
+  }
+
+  @media (max-width:800px){
+    .left{
+      width: 100%;
+    }
+    .image{
+      width: 100x;
+      height: 100px;
+    }
+
   }
