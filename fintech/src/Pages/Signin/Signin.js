@@ -57,25 +57,7 @@ const Signin = () => {
 
      }
 
-    // loginUser(userinfonotpassword)
-    // Make a request with Axios
-
-
-      //  await axios.get('localhost:5000/signin', {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${userCookie}`, 
-      //   },
-      // })
-      //   .then(response => {
-      //     console.log(response.data);
-      //   })
-      //   .catch(error => {
-      //     console.error('Error:', error);
-      //   });
-
-    // signin(userInfo);
-    // console.log(userInfo);
+  
   };
 
 

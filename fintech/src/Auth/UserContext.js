@@ -16,7 +16,7 @@ export const UserProvider = ({children}) =>{
 
     const signin = (userInfo) =>{
         setMyUser(userInfo);
-                console.log("in useContext", myUser);
+                // console.log("in useContext", myUser);
 
     }
     const signout = () =>{
