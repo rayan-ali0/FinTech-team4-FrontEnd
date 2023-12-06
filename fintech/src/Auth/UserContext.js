@@ -1,4 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { getUserInfo } from '../Auth/UserService';
+import Cookies from "js-cookie";
+
 
 const UserContext = createContext();
 
@@ -7,17 +10,24 @@ export const useUserContext = () => {
   };  
 
 export const UserProvider = ({children}) =>{
-    const [user, setUser] = useState(null);
+    const [myUser, setMyUser] = useState({});
 
-    const signin = (userinfo) =>{
-        setUser(userinfo);
+   
+
+    const signin = (userInfo) =>{
+        setMyUser(userInfo);
+                // console.log("in useContext", myUser);
+
     }
     const signout = () =>{
-        setUser(null);
+        setMyUser(null);
     }
 
+
+    
+
     return (
-        <UserContext.Provider value={{ user, signin, signout }}>
+        <UserContext.Provider value={{ myUser, signin, signout }}>
             {children}
         </UserContext.Provider>
     );
