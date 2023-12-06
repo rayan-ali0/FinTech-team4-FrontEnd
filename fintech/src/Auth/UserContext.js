@@ -10,7 +10,7 @@ export const useUserContext = () => {
   };  
 
 export const UserProvider = ({children}) =>{
-    const [myUser, setMyUser] = useState({});
+    const [myUser, setMyUser] = useState();
 
    
 

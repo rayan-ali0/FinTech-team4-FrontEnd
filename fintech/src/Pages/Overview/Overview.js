@@ -7,6 +7,7 @@ import Styels from "./overview.module.css"
 import ToolbarGrid from '../../Components/Table/Table';
 import BasicColor from '../../Components/Charts/Charts';
 import HiddenLegend from '../../Components/charts2/CircularChart';
+import { useUserContext } from '../../Auth/UserContext';
 
 const sample = [1, 10, 30, 50, 70, 90, 100];
 
@@ -16,6 +17,8 @@ const seriesA = {
 };
 
 export default function BasicStacking() {
+  const {myUser} = useUserContext();
+  console.log("this is my user",myUser);
   return (
     <div style={{margin:"0 2rem"}}>
       <div >

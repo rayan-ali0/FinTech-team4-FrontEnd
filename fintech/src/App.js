@@ -24,6 +24,7 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
+      {/* <RouterProvider router={router}> */}
       <UserProvider>
       <div className='App'>
         <div className='container'>
@@ -31,8 +32,27 @@ function App() {
         </div>
       </div>
         </UserProvider>
+        {/* </RouterProvider> */}
       </ThemeProvider>   
   );
 }
 
 export default App;
+
+
+{/* <ThemeProvider theme={theme}>
+<BrowserRouter>
+<UserProvider>
+
+<Routes>
+  <Route path="/signin" element={< Signin/>} />
+  <Route path="/signup" element={<Signup />} />
+  <Route element={<PrivateRoute />}>
+  <Route path="/" element={<Overview />} />
+  <Route path="/profile" element={<Profile />} />
+  </Route>
+</Routes>
+
+  </UserProvider>
+  </BrowserRouter>
+</ThemeProvider>   */}
