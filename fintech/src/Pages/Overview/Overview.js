@@ -3,11 +3,12 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 // import { LineChart } from '@mui/x-charts/LineChart';
-import Styels from "./overview.module.css"
+import Styles from "./overview.module.css"
 import ToolbarGrid from '../../Components/Table/Table';
 import BasicColor from '../../Components/Charts/Charts';
 import HiddenLegend from '../../Components/charts2/CircularChart';
-
+// import recentMerchant from '../../Components/recentMerchant/recentMerchant';
+import RecentMerchant from '../../Components/recentMerchant/recentMerchant';
 const sample = [1, 10, 30, 50, 70, 90, 100];
 
 const seriesA = {
@@ -17,8 +18,8 @@ const seriesA = {
 
 export default function BasicStacking() {
   return (
-    <div style={{margin:"0 2rem"}}>
-      <div >
+    <div style={{margin:"0 auto",border:"1px solid white",width:"100%",height:"90%"}} className={Styles.overviewHolder}>
+      {/* <div >
     <div style={{display:"flex", flexDirection:"row", gap:"2rem"}}>
     <BarChart
     sx={{ borderRadius:"15px" ,background:"#140952"}}
@@ -32,9 +33,16 @@ export default function BasicStacking() {
     <HiddenLegend />
     </div>
     <BasicColor />
-    {/* <ToolbarGrid /> */}
+    {/* <ToolbarGrid /> 
     
-    </div>  
+    </div>   */}
+<div className={Styles.merchantflex1}>
+hii
+</div>
+<div className={Styles.merchantflex2}>
+<RecentMerchant/>
+
+</div>
     </div>
     
   );

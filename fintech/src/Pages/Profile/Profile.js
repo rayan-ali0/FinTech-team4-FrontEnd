@@ -98,7 +98,7 @@ const Profile = () => {
               <ArrowBackIcon sx={{ color: "#253B8E", cursor: "pointer" }}></ArrowBackIcon>
 
               <Typography variant="h4" sx={{ alignSelf: "center", color: "white" }}>
-                <img src={Pic} className={Styles.image} alt="user profile"></img>
+              <img src={`${process.env.REACT_APP_PATH}/${userProfile.pic}`} className={Styles.image} alt="user profile"></img>
               </Typography>
               <Button sx={{
                 color: "white", alignSelf: "center", backgroundColor: "transparent", borderRadius: "8px", height: "25px", width: "15rem", marginBottom: "1rem", '&:hover': {
