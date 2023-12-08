@@ -13,6 +13,9 @@ import { createBrowserRouter, Outlet, } from "react-router-dom";
 import styles from './Router.module.css'
 import NotFound from '../Pages/NotFound'
 import NotAuthorized from "../Pages/NotAuthorized"
+
+import PrivateRoute from '../Auth/PrivateRoute'
+
 const Layout =()=>{
     return(
     // <>
@@ -38,9 +41,13 @@ const Layout =()=>{
     )
   }
   const router = createBrowserRouter([
+    { path: "/",
+        element: <PrivateRoute/>,
+        children:[
     {
         path:"/",
         element:<Layout />,
+        // element:<PrivateRoute />,
         children:[
             {
                 path:"/",
@@ -73,7 +80,7 @@ const Layout =()=>{
             // },
           
         ]
-    },
+    }]},
     
         {
             path:'/signin',

@@ -4,11 +4,11 @@ import picture from "../../Assets/CWarren_DigitalWallet_1200.jpg"
 import TextField from '@mui/material/TextField';
 import styled from '@emotion/styled';
 import { Button, Typography, colors } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import {UserProvider, useUserContext} from '../../Auth/UserContext.js'
 import axios from 'axios';
 // import { getUserInfo, loginUser } from '../../Auth/UserService';
-
+// import {  } from 'react-router-dom';
 
 
 
@@ -25,8 +25,9 @@ const Signin = () => {
   const [error, setError] = useState(false)
   let name = "";
 
-
+  const navigate=useNavigate();
   const  handleSignIn = async (e) => {
+   
     e.preventDefault();
 
      if(email && password){
@@ -40,6 +41,7 @@ const Signin = () => {
           // console.log(UserProvider.tryGetUser());
           signin(response.data);
           console.log("user signedin? ", myUser);
+          navigate('/');
              
         })
         .catch(function (error) {

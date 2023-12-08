@@ -10,6 +10,8 @@ import HiddenLegend from '../../Components/charts2/CircularChart';
 // import recentMerchant from '../../Components/recentMerchant/recentMerchant';
 import RecentMerchant from '../../Components/recentMerchant/recentMerchant';
 import DashCards from '../../Components/dashCards/DashCards'
+import { useUserContext } from '../../Auth/UserContext';
+
 const sample = [1, 10, 30, 50, 70, 90, 100];
 
 const seriesA = {
@@ -19,6 +21,8 @@ const seriesA = {
 
 export default function BasicStacking() {
   const [role,setRole]=React.useState("merchant")
+  const {myUser} = useUserContext();
+  console.log("this is my user",myUser);
   return (
     <>
     {
