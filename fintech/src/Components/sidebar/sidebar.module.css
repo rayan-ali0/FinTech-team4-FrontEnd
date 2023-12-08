@@ -9,9 +9,9 @@
     font-size: bold;
  
   } */
-  /* .activee{
+  .active{
     background-color: rgb(32, 23, 23);
-  } */
+  }
   /* @media (max-width: 600px) {
 
     .MuiDrawer-paper {

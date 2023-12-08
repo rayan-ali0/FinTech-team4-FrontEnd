@@ -17,7 +17,7 @@ line {
 .merchantflex1 , .merchantflex2{
     height: 49%;
     width: 92%;
-    border: 3px solid red;
+    /* border: 3px solid red; */
     margin: 0 auto;
 }
 
