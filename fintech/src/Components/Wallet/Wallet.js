@@ -9,7 +9,10 @@ import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import axios from "axios";
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {} from '../../Components/depositModal/Deposit'
+import { Box, InputAdornment, Modal, TextField, Typography } from '@mui/material';
+import { handleOnlyNumbers, handleSubmit } from '../depositModal/utils';
 export default function Wallet({ id }) {
     const [userId, setUserId] = useState(id)
     const [userWallet, setUserWallet] = useState()
@@ -18,8 +21,9 @@ export default function Wallet({ id }) {
     const [recentsLoading, setRecentsLoading] = useState(true)
 
     /*********************/
-    const fetchWallet = (userId) => {
-        axios.get(`${process.env.REACT_APP_PATH}/wallet/readByUser/8`)
+    const fetchWallet = async(userId) => {
+
+        await axios.get(`${process.env.REACT_APP_PATH}/wallet/readByUser/8`)
             .then((res) => {
                 setUserWallet(res.data);
                 console.log(res.data)
@@ -30,8 +34,8 @@ export default function Wallet({ id }) {
             });
     }
 
-    const fetchRecents = (userId) => {
-        axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction?userId=8`)
+    const fetchRecents =async (userId) => {
+       await axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction?userId=8`)
             .then((res) => {
                 setUserTransactions(res.data);
                 console.log(res.data)
@@ -63,6 +67,42 @@ export default function Wallet({ id }) {
 
         },
     }
+    const [open,setOpen] = useState(false);
+    const [error, setError] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
+
+    const handleOpen = ()=>{
+        setOpen(true)
+    }
+
+    const handleClose = ()=>{
+        setOpen(false)
+        setConfirmation(false);
+    }
+
+    const style={
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "500px",
+        bgcolor: "#190D60",
+        borderRadius: 5,
+        boxShadow: 24,
+        p: 4,
+    }
+
+    const [amount,setAmount] = useState(false);
+    const [formInfo, setFormInfo] = useState({
+      amount : 0,
+      type: "Deposit",
+      address : "myAddress",
+      description: "Deposit into account",
+      promoCode: "",
+  })
+
+
+
     return (
         <>
             {!walletLoading && !recentsLoading ? (
@@ -81,7 +121,7 @@ export default function Wallet({ id }) {
                                 </div>
                                 <div className={styles.actionBtns}>
                                 
-                                    <Button  variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
+                                    <Button  onClick={handleOpen} variant="contained" sx={useStyle.hoverBtn}>Deposit</Button>
                                     <Button variant="contained" sx={{
                                         background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`, color: "white", '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" }, '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
@@ -168,6 +208,77 @@ export default function Wallet({ id }) {
                                     </div>
                                     ))
                                 }
+
+
+<Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box sx={style}>
+   <div className={styles.depocontainer}>
+    <h2 className={styles.depoh2}>Deposit into your account</h2>
+    
+    <form noValidate autoComplete='off' onSubmit={(e)=>{handleSubmit(e,formInfo, error); setConfirmation(true)}} className={styles.form}>
+
+<TextField 
+            // sx={myfield}
+            className={styles.fields}
+            label="Amount"
+            variant='outlined'
+            color= 'primary'
+            size='small'
+            fullWidth
+            focused
+            required
+            error={error}
+            onChange={(event) => {
+              handleOnlyNumbers(event, setAmount,setError);
+              setFormInfo({...formInfo, amount: parseFloat(event.target.value)})
+           }}
+            InputProps={{
+                startAdornment: <InputAdornment position="start"><Typography style={error?{color: "red"} :{ color: 'white' }}>$</Typography></InputAdornment>,
+                style: {color: 'white'},
+                readOnly: confirmation,
+                
+            }}
+            InputLabelProps={{
+                style: { color: 'white' },
+                
+              }}
+            />
+
+            <div className={styles.confirmationSection}>
+            <Button
+        className={styles.button}
+        type='submit'
+        color='secondary'
+        variant='contained'
+        >Deposit</Button>
+
+        {confirmation ? 
+        <CheckBoxIcon 
+        variant='outlined' 
+        color='success'
+        ></CheckBoxIcon>        
+         : ""}
+
+        </div>
+
+</form>
+
+   </div>
+  </Box>
+</Modal>
+
+
+
+
+
+
+
+
                                 {/* <div className={styles.recentOne}>
                                     <span className={styles.recentArrow}><SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /> </span>
                                     <span>withdraw</span>
