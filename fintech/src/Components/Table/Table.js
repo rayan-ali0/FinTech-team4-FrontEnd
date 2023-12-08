@@ -15,9 +15,7 @@ export default function ToolbarGrid() {
     { field: 'BuyerId', headerName: 'userId', width: 90 },
     { field: 'BuyerId', headerName: 'userId', width: 90 },
     { field: 'BuyerId', headerName: 'userId', width: 90 },
-    { field: 'BuyerId', headerName: 'userId', width: 90 },
-    { field: 'BuyerId', headerName: 'userId', width: 90 },
-    { field: 'BuyerId', headerName: 'userId', width: 90 },
+
 
 
     // Add more columns as needed
@@ -25,6 +23,14 @@ export default function ToolbarGrid() {
    const myCustomData = [
     { id: 1, name: 'abdulaziz Doe', age: 25 },
     { id: 2, name: 'Jass', age: 30 },
+    { id: 1, name: 'Jossshn Doe', age: 25 },
+    { id: 2, name: 'Jane Doe', age: 30 },
+    { id: 1, name: 'John Doe', age: 25 },
+    { id: 2, name: 'Jane Doe', age: 30 },
+    { id: 1, name: 'Jossshn Doe', age: 25 },
+    { id: 2, name: 'Jane Doe', age: 30 },
+    { id: 1, name: 'John Doe', age: 25 },
+    { id: 2, name: 'Jane Doe', age: 30 },
     { id: 1, name: 'Jossshn Doe', age: 25 },
     { id: 2, name: 'Jane Doe', age: 30 },
     { id: 1, name: 'John Doe', age: 25 },
@@ -39,7 +45,7 @@ export default function ToolbarGrid() {
   // });
 
   return (
-    <div style={{ height: 800, width: '80%', margin: 'auto', height: "400px", marginTop: "3rem" }}>
+    <div style={{  width: '80%', margin: 'auto', height: "700px", marginTop: "3rem" }}>
     <DataGrid
       rows={myCustomData}
       columns={columns}
@@ -55,7 +61,7 @@ export default function ToolbarGrid() {
         border:"none !important",
         color: 'white',
         '& .MuiDataGrid-root': {
-          backgroundColor: 'black',
+          backgroundColor: 'white',
           fontFamily: "var(--main-font-family)",
           // border:"1px solid red"
           // Background color of the entire grid
@@ -69,6 +75,7 @@ export default function ToolbarGrid() {
         '& .MuiDataGrid-cell': {
           borderBottom: '1px solid #ccc', // Border between cells
           color: 'white',
+          borderColor:"#7A7A7A !important",
           fontFamily: "var(--main-font-family)" // Text color of cells
         },
         '& .MuiTablePagination-root': {
