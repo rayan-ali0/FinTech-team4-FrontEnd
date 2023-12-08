@@ -5,8 +5,10 @@ import background from "../../Assets/159044-ipad-apple-ipad_air-ipad_air_4_2020-
 import { TextField, Button, Typography } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios'
+import Input from '@mui/material/Input'
 
 const Profile = () => {
+  const [editPhotoLoading,setEditPhotoLoading]=useState(false)
   const [userProfile, setUserProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState(null)
@@ -26,6 +28,7 @@ const Profile = () => {
 
   useEffect(() => {
     fetchProfile()
+    // console.log(`${process.env.REACT_APP_PATH}/${userProfile.pic}`)
   }
     , []
   )
@@ -83,6 +86,38 @@ const Profile = () => {
 
 
   }
+  const handleFileChange=(event)=>{
+    const file=event.target.files[0]
+    if(file){
+      UpdateImage(file)
+
+    }
+  }
+  const UpdateImage=async(file)=>{
+    setEditPhotoLoading(true)
+try{
+const formData=new FormData()
+formData.append('profile',file)
+
+const res=await axios.patch(`${process.env.REACT_APP_PATH}/user/update/pic/18`,formData,{
+  headers:{
+    'Content-Type':'multipart/form-data'
+  }
+})
+if(res){
+  console.log("image updated successfully")
+}
+fetchProfile()
+setEditPhotoLoading(false)
+
+}
+
+catch(error){
+console.log('Error updating',error)
+setEditPhotoLoading(false)
+
+}
+  }
 
   return (
 
@@ -94,63 +129,148 @@ const Profile = () => {
             {/* <img src={background} className={Styles.img}></img> */}
           </div>
           <div className={Styles.left}>
-            <form className={Styles.form} style={{ display: "flex", flexDirection: "column", color: "white", width: "60%", height: "80%" }}>
-              <ArrowBackIcon sx={{ color: "#253B8E", cursor: "pointer" }}></ArrowBackIcon>
+            <form className={Styles.form} style={{ display: "flex",marginTop:"", flexDirection: "column", color: "white", width: "60%", height: "80%" }}>
+              {/* <ArrowBackIcon sx={{ color: "#253B8E", cursor: "pointer" }}></ArrowBackIcon> */}
 
-              <Typography variant="h4" sx={{ alignSelf: "center", color: "white" }}>
-              <img src={`${process.env.REACT_APP_PATH}/${userProfile.pic}`} className={Styles.image} alt="user profile"></img>
+              <Typography variant="h4" sx={{ alignSelf: "center", color: "white",width:"200px",height:"200px"}}>     
+                       <img src={`${process.env.REACT_APP_PATH}/${userProfile.pic}`} className={Styles.image} alt="user profile"></img>
               </Typography>
-              <Button sx={{
-                color: "white", alignSelf: "center", backgroundColor: "transparent", borderRadius: "8px", height: "25px", width: "15rem", marginBottom: "1rem", '&:hover': {
-                  backgroundColor: "#4566C1", color: "white"
-                }
-              }}>update photo</Button>
+              <label htmlFor="file-input" style={{ display: "flex",
+            justifyContent: "center",
+            alignItems:"center",
+            flexDirection:"column",margin:"0.6em 0"}}
+            >
+        <Input
+          type="file"
+          inputProps={{ accept: 'image/*' }}
+          onChange={handleFileChange}
+          sx={{
+            display: 'none',
+            width:"50%" ,
+            alignSelf: "center",
+
+            border:"1px solid white",// hide the default file input
+          }}
+          id="file-input"
+        />
+        <Button
+          component="span"
+          sx={{
+            color: "white",
+            alignSelf: "center",
+            backgroundColor: "transparent",
+            borderRadius: "8px",
+            height: "35px",
+            width: "50%",
+            // border:"1px solid white",
+            // margin:" 1rem 0",
+            // marginBottom: "1rem",
+            // display: "flex",border:"1px solid white",
+            // justifyContent: "center",
+            // alignItems:"center",
+            // flexDirection:"column",
+            float:"center",
+            '&:hover': {
+              backgroundColor: "#4566C1",
+              color: "white"
+            },
+            // Add additional styles as needed to match your button
+          }}
+        >
+          { editPhotoLoading?'Updating ..':'Update Photo'} {/* Display filename or default text */}
+        </Button>
+      </label>
+      {/* </div> */}
               <TextField
                 readOnly={false}
                 placeholder='Name'
                 defaultValue={userProfile.name}
                 id="name"
                 variant='outlined'
+                InputProps={{
+                  style: { color: 'white' }, // Color of the input value
+                }}
+                InputLabelProps={{
+                  style: { color: 'white' }, // Color of the placeholder
+                }}
+
                 sx={{
-                  width: "100%", backgroundColor: "white", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
+                  width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
-                      border: 'none',
+                      border: '1px solid grey',
                     },
                   },
-                }}
+                  '&:hover': {
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'white', // Border color on hover
+                      },
+                    },
+                }
+              }
+              }
               >
 
               </TextField>
               <TextField
                 placeholder='Username'
-                defaultValue={userProfile.username}
+                value={userProfile.username}
                 id="username"
                 variant='outlined'
+                InputProps={{
+                  style: { color: 'white' }, // Color of the input value
+                }}
+                InputLabelProps={{
+                  style: { color: 'white' }, // Color of the placeholder
+                }}
                 sx={{
-                  width: "100%", backgroundColor: "white", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
+                  width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
-                      border: 'none',
+                      border: '1px solid grey',
                     },
-                  },
+                  }
+                  ,
+                  '&:hover': {
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'white', // Border color on hover
+                      },
+                    },
+                }
+
                 }}
               >
 
               </TextField>
               <TextField
                 placeholder='Email'
-                defaultValue={userProfile.email}
+                value={userProfile.email}
                 id="email"
                 variant='outlined'
+                InputProps={{
+                  style: { color: 'white' }, // Color of the input value
+                }}
+                InputLabelProps={{
+                  style: { color: 'white' }, // Color of the placeholder
+                }}
                 sx={{
-                  width: "100%", backgroundColor: "white", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
+                  width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
 
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
-                      border: 'none',
+                      border: '1px solid grey',
                     },
-                  },
+                  }
+                  ,
+                  '&:hover': {
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'white', // Border color on hover
+                      },
+                    },
+                }
                 }}
               ></TextField>
 
@@ -159,14 +279,28 @@ const Profile = () => {
                 placeholder="Password"
                 id="password"
                 required
+                InputProps={{
+                  style: { color: 'white' }, // Color of the input value
+                }}
+                InputLabelProps={{
+                  style: { color: 'white' }, // Color of the placeholder
+                }}
                 sx={{
-                  width: "100%", backgroundColor: "white", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "3rem"
+                  width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "3rem"
                   ,
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
-                      border: 'none',
+                      border: '1px solid grey',
                     },
-                  },
+                  }
+                  ,
+                  '&:hover': {
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'white', // Border color on hover
+                      },
+                    },
+                }
                 }}
               ></TextField>
               {!editLoading ? (
