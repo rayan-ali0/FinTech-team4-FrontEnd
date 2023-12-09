@@ -23,7 +23,7 @@ export default function BasicStacking() {
 
 
 
-  const [role,setRole]=React.useState("user")
+  const [role,setRole]=React.useState("merchant")
   const {myUser} = useUserContext();
   console.log("this is my user",myUser);
   return (

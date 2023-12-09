@@ -12,7 +12,10 @@ import Wallet from '../Pages/Wallet/WalletPage'
 import { createBrowserRouter, Outlet, } from "react-router-dom";
 import styles from './Router.module.css'
 import NotFound from '../Pages/NotFound'
+import Pending from "../Pages/Pending/Pending"
+import Admin from "../Pages/Admins/Admins"
 import NotAuthorized from "../Pages/NotAuthorized"
+import Transactions from "../Pages/Transactions"
 
 import PrivateRoute from '../Auth/PrivateRoute'
 
@@ -60,7 +63,7 @@ const Layout =()=>{
          
             {
                 path:'/transaction',
-                element:<Transaction />
+                element:<Transactions />
             },
             // {
             //     path:'/transferhistory',
@@ -73,6 +76,14 @@ const Layout =()=>{
             {
                 path:'/wallet',
                 element:<Wallet />
+            },
+            {
+                path:'/pending',
+                element:<Pending />
+            },
+            {
+                path:'/admin',
+                element:<Admin />
             },
             // {
             //     path:'/withdraw',

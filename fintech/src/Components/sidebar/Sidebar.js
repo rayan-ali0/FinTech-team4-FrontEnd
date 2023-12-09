@@ -28,7 +28,7 @@ const drawerWidth = 240;
 
 export default function ClippedDrawer() {
   const [ activeSide, setActiveSide]= useState("Dashboard")
-  const [role,setRole]=useState('user')
+  const [role,setRole]=useState('merchant')
   const handleClick=(filter)=>{
     setActiveSide(filter)
     // flushSync(()=>{

@@ -11,11 +11,9 @@ export default function Transactions() {
   return (
     <div className={styles.container}>
 
-
       <BasicTable />
    
-     
-
+    
   
       </div>
   )

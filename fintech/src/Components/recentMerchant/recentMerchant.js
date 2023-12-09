@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 const RecentMerchant = ({role}) => {
 const [recents,setRecents]=useState(null)
 const [loading,setLoading]=useState(true)
-const [id,setId]=useState(8)
+const [id,setId]=useState(5)
 const approveTransaction=async (id)=>{
 try{
     const res=await axios.put(`${process.env.REACT_APP_PATH}/update/transaction`,null,{
@@ -58,7 +58,7 @@ const fetchRecentsMerchant= async()=>{//Pendinggg
 try{
 const res=await axios.get(`${process.env.REACT_APP_PATH}/transaction/getlastPending`,{
     params:{
-        userId:8
+        userId:5
     }
 })
 if(res){
@@ -126,12 +126,12 @@ useEffect(()=>{
                             (
                                 <th>Buyer</th>
                             ):(
-                                <th>sc party</th>
+                                <th>Participant</th>
                             )
                         }
                             
-                            <th>Amount USDT</th>
-                            <th>Price USD</th>
+                            <th>USDT</th>
+                            <th>USD</th>
                             {/* <th>Promotion</th> */}
                             {role==="merchant"?
                             (
@@ -172,17 +172,17 @@ useEffect(()=>{
         ))
     )}
     
-    <td>{recent.amountUSDT}</td>
+    <td>{recent.amountUSDT } </td>
     <td>{recent.amountUSD}</td>
+    {role==="merchant"?recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>):null}
     {/* {recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>)} */}
     <td style={{color:recent.status==="declined"?"red":recent.status==="accepted"?"green":"white"}}>{recent.status}</td>
     {role==="merchant"?
     (<td>
         <DoneIcon style={{color:"green",cursor:"pointer"}} onClick={()=>approveTransaction(recent.id)}>
     </DoneIcon> 
-    <CloseIcon sx={{color:'red'}} onClick={()=>declineTransaction(recent.id)}></CloseIcon>
-    </td>):
-    (<td>{recent.type}</td>)}
+    <CloseIcon sx={{color:'red',cursor:"pointer"}} onClick={()=>declineTransaction(recent.id)}></CloseIcon></td>):
+    (<td>{recent.type.charAt(0).toUpperCase()+recent.type.slice(1)}</td>)}
 
 
 </tr>
