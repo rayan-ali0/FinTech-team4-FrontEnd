@@ -13,6 +13,7 @@ import { createBrowserRouter, Outlet, } from "react-router-dom";
 import styles from './Router.module.css'
 import NotFound from '../Pages/NotFound'
 import Pending from "../Pages/Pending/Pending"
+import Users from "../Pages/Users/Users"
 import Admin from "../Pages/Admins/Admins"
 import NotAuthorized from "../Pages/NotAuthorized"
 import Transactions from "../Pages/Transactions"
@@ -64,6 +65,10 @@ const Layout =()=>{
             {
                 path:'/transaction',
                 element:<Transactions />
+            },
+            {
+                path:'/users',
+                element:<Users />
             },
             // {
             //     path:'/transferhistory',

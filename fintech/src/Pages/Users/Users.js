@@ -11,24 +11,18 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function ToolbarGrid() {
 
-  const [transactions, setTransactions]=useState([])
+  const [users, setUsers]=useState([])
   const [id, setId]=useState(5)
   const [loading, setLoading]= useState(true)
   console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
 
-  const fetchTransactions=async()=>{
+  const fetchUsers=async()=>{
     try {
-      const result= await axios.get(`${process.env.REACT_APP_PATH}/transaction/read/transaction/byId`,{
-        params:{
-            userId:8,
-          
-        }})
+      const result= await axios.get(`${process.env.REACT_APP_PATH}/user/users`)
         if(result){
-          const filteredTransactions = result.data.filter(
-            transaction => transaction.status === 'pending'
-          );
-          setTransactions(filteredTransactions)
-          console.log("Transactions fetched successfully:", result.data);
+         
+          setUsers(result.data)
+          console.log("userss fetched successfully:", result.data);
           setLoading(false)
         }  else{
           console.log('no data')
@@ -37,77 +31,37 @@ export default function ToolbarGrid() {
         
     } catch (error) {
       console.log('error fetching'+error.message)
+      setLoading(false)
     }
   }
   React.useEffect(() => {
-    fetchTransactions();
+    fetchUsers();
   }, []);
 
-  const approveTransaction=async (id)=>{
-    try{
-        const res=await axios.put(`${process.env.REACT_APP_PATH}/update/transaction`,null,{
-            params:{
-                transactionId:id,
-                action:"accepted"
-            }
-        })
-        if(res.status===200){
-            console.log("transaction approved!")
-            alert("approved"+id)
-            setLoading(true)
-             fetchTransactions()
-        }
-        else{
-            console.log("error")
-        }
-    }
-    catch(error){
-        console.log("Error"+error.message)
-    }
-    
-    }
-    
-    const declineTransaction= async(id)=>{
+
+    const deleteUser= async(id)=>{
         try {
-            const res= await axios.put(`${process.env.REACT_APP_PATH}/update/transaction`,null,{
-            params:{
-                transactionId:id,
-                action:"rejected"
-            }})
+            const res= await axios.delete(`${process.env.REACT_APP_PATH}/user/delete/${id}`)
+          
             if(res.status===200){
                 setLoading(true)
-                await fetchTransactions()
+                await fetchUsers()
                 console.log("doneee")
             }
         } catch (error) {
-            console.log(error.error)
+            console.log(error.message)
+            setLoading(false)
         }
     }
 
-  // const columns = [
-
-  //   { field: 'id', headerName: 'ID', width: 70 },
-  //   { field: 'name', headerName: 'Name', width: 150 },
-  //   { field: 'age', headerName: 'Age', width: 90 },
-  //   { field: 'BuyerId', headerName: 'userId', width: 90 },
-
- 
-
-
-  //   // Add more columns as needed
-  // ]; 
 
   const columns = [
 
-    { field: 'id', headerName: 'Trnsaction ID', width: 115 },
-    { field: 'BuyerId', headerName: 'Buyer', width: 115 },
-    { field: 'SellerId', headerName: 'Seller', width: 115 },
-    { field: 'amountUSD', headerName: 'USD', width: 115 },
-    { field: 'amountUSDT', headerName: 'USDT', width: 115 },
-    { field: 'type', headerName: 'Type', width: 115 },
-    { field: 'status', headerName: 'Status', width: 115 },
-    { field: 'PromotionId', headerName: 'Promotion Used', width: 115 },
-    { field: 'createdAt', headerName: 'Date', width: 115 },
+    { field: 'id', headerName: 'User ID', width: 203 },
+    { field: 'name', headerName: 'Name', width: 203 },
+    { field: 'username', headerName: 'Username', width: 203 },
+    { field: 'email', headerName: 'Email', width: 203 },
+    { field: 'createdAt', headerName: 'Date Signed', width: 203 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -116,12 +70,8 @@ export default function ToolbarGrid() {
         <>
           {params.row && params.row.id ? (
             <>
-              <DoneIcon style={{ color: "green", cursor: "pointer" }} onClick={() => {
-                approveTransaction(params.row.id);
-                console.log('Approve clicked:', params.row);
-              }}>
-              </DoneIcon>
-              <CloseIcon sx={{ color: 'red' }} onClick={() => declineTransaction(params.row.id)}></CloseIcon>
+             
+              <CloseIcon sx={{ color: 'red' ,cursor:"pointer"}} onClick={() => deleteUser(params.row.id)}></CloseIcon>
             </>
           ) : (
             null
@@ -148,9 +98,9 @@ export default function ToolbarGrid() {
   //   rowLength: 10,
   //   maxColumns: 6,
   // });
-  const emptyRow = { id: 0};
+  const emptyRow = { id: "Loading..."};
 
-  const rowsWithEmptyRow = loading ? [emptyRow, ...transactions] : transactions;
+  const rowsWithEmptyRow = loading ? [emptyRow, ...users] : users;
 
 
   return (

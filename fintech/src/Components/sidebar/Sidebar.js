@@ -27,8 +27,8 @@ import PendingIcon from '@mui/icons-material/Pending';
 const drawerWidth = 240;
 
 export default function ClippedDrawer() {
-  const [ activeSide, setActiveSide]= useState("Dashboard")
-  const [role,setRole]=useState('merchant')
+  const [ activeSide, setActiveSide]= useState("Transaction")
+  const [role,setRole]=useState('admin')
   const handleClick=(filter)=>{
     setActiveSide(filter)
  
@@ -95,18 +95,12 @@ role==="merchant"?
       <ListItemText primary="Requests" />
     </ListItemButton>
     </Link>
-  </ListItem>)
+  </ListItem>
+  )
 :
-(<ListItem disablePadding>
-  <Link to='/transfer' style={{textDecoration:"none" , color:"white"}}>
-    <ListItemButton sx={{width:"140%"}}>
-      <ListItemIcon>
-        <CurrencyExchangeIcon  sx={{color:"white"}}/>
-      </ListItemIcon>
-      <ListItemText primary="Transfer" />
-    </ListItemButton>
-    </Link>
-  </ListItem>)
+(
+null
+)
 }
           
 
