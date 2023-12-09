@@ -10,23 +10,12 @@ import WalletCards from '../Components/WalletCards/WalletCards';
 export default function Transactions() {
   return (
     <div className={styles.container}>
-      <div style={{ marginBottom: `20px` ,color:`#FFF`}} className={styles.sideBar}>
-{/* <ClippedDrawer/> */}
-<h1>SideBar</h1>
-     </div>
-<div className={styles.main}>
-    <div className={styles.navBar}>
-    <NavBar />
 
-    </div >
-    <div>
-        
-    </div>
+
       <BasicTable />
    
      
 
-</div>
   
       </div>
   )

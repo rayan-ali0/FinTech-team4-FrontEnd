@@ -177,9 +177,11 @@ useEffect(()=>{
     {/* {recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>)} */}
     <td style={{color:recent.status==="declined"?"red":recent.status==="accepted"?"green":"white"}}>{recent.status}</td>
     {role==="merchant"?
-    (<td><DoneIcon style={{color:"green",cursor:"pointer"}} onClick={()=>approveTransaction(recent.id)}>
+    (<td>
+        <DoneIcon style={{color:"green",cursor:"pointer"}} onClick={()=>approveTransaction(recent.id)}>
     </DoneIcon> 
-    <CloseIcon sx={{color:'red'}} onClick={()=>declineTransaction(recent.id)}></CloseIcon></td>):
+    <CloseIcon sx={{color:'red'}} onClick={()=>declineTransaction(recent.id)}></CloseIcon>
+    </td>):
     (<td>{recent.type}</td>)}
 
 

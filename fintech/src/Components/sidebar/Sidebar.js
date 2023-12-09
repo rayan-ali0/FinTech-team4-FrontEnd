@@ -88,7 +88,7 @@ export default function ClippedDrawer() {
 {
 role==="merchant"?
 (<ListItem disablePadding>
-  <Link to='/transaction' style={{textDecoration:"none" , color:"white"}}>
+  <Link to='/pending' style={{textDecoration:"none" , color:"white"}}>
     <ListItemButton sx={{width:"140%"}}>
       <ListItemIcon>
 <PendingIcon sx={{color:"white"}} />
@@ -100,7 +100,7 @@ role==="merchant"?
   </ListItem>)
 :
 (<ListItem disablePadding>
-  <Link to='/transaction' style={{textDecoration:"none" , color:"white"}}>
+  <Link to='/transfer' style={{textDecoration:"none" , color:"white"}}>
     <ListItemButton sx={{width:"140%"}}>
       <ListItemIcon>
         <CurrencyExchangeIcon  sx={{color:"white"}}/>
@@ -184,7 +184,7 @@ role==="merchant"?
 
      
         <ListItem disablePadding>
-        <Link to='/wallet' style={{textDecoration:"none", color:"white"}}>
+        <Link to='/admins' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"130%"}}>
             <ListItemIcon>
               <WalletIcon  sx={{color:"white"}} />
@@ -195,7 +195,7 @@ role==="merchant"?
         </ListItem>
         
         <ListItem disablePadding>
-        <Link to='/wallet' style={{textDecoration:"none", color:"white"}}>
+        <Link to='/users' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"130%"}}>
             <ListItemIcon>
               <WalletIcon  sx={{color:"white"}} />
@@ -206,7 +206,7 @@ role==="merchant"?
         </ListItem>
 
         <ListItem disablePadding>
-        <Link to='transaction' style={{textDecoration:"none", color:"white"}}>
+        <Link to='/transaction' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton key="Transaction" className={`${Style.activee} ${activeSide === "Transaction" ?  "active":""}`} onClick={()=> handleClick('Transaction')} sx={{width:"120%" }}>
             <ListItemIcon>
               <AccountBalanceWalletIcon sx={{color:"white"}}/>
