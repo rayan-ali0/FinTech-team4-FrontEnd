@@ -33,6 +33,7 @@ const[transactions,setTransactions]=useState({})
   }
     , []
   )
+  
   const approveTransaction=async (id)=>{
     try{
         const res=await axios.put(`${process.env.REACT_APP_PATH}/update/transaction`,null,{
@@ -87,8 +88,6 @@ const[transactions,setTransactions]=useState({})
     { field: 'BuyerId', headerName: 'userId', width: 90 },
 
 
-
-    // Add more columns as needed
   ]; 
    const myCustomData = [
     { id: 1, name: 'abdulaziz Doe', age: 25 },

@@ -31,9 +31,7 @@ export default function ClippedDrawer() {
   const [role,setRole]=useState('merchant')
   const handleClick=(filter)=>{
     setActiveSide(filter)
-    // flushSync(()=>{
-    //   setActiveSide(filter)
-    // })
+ 
   }
 
   return (
@@ -170,7 +168,7 @@ role==="merchant"?
       <List sx={{ display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
         <ListItem disablePadding>
         <Link to='/' style={{textDecoration:"none", color:"white", }}>
-          <ListItemButton key='Dashboard' className={`${Style.activee} ${activeSide === "Dashboard" ? Style.active:""}`} onClick={()=> handleClick('Dashboard')} sx={{width:"125%"}} >
+          <ListItemButton key='Dashboard' className={` ${activeSide === "Dashboard" ? Style.active:""}`} onClick={()=> handleClick('Dashboard')} sx={{width:"125%"}} >
             
             <ListItemIcon>
               <DashboardIcon sx={{color:"white"}}/>
@@ -207,7 +205,7 @@ role==="merchant"?
 
         <ListItem disablePadding>
         <Link to='/transaction' style={{textDecoration:"none", color:"white"}}>
-          <ListItemButton key="Transaction" className={`${Style.activee} ${activeSide === "Transaction" ?  "active":""}`} onClick={()=> handleClick('Transaction')} sx={{width:"120%" }}>
+          <ListItemButton key="Transaction" className={` ${activeSide === "Transaction" ?  "active":""}`} onClick={()=> handleClick('Transaction')} sx={{width:"120%" }}>
             <ListItemIcon>
               <AccountBalanceWalletIcon sx={{color:"white"}}/>
             </ListItemIcon>
