@@ -10,7 +10,7 @@ import Styles from './Styles.module.css'
 
 
 
-export default function Transaction() {
+export default function Transaction({setTogglePage}) {
     const [error, setError] = useState(false);
     const [amount, setAmount] = useState(0);
     const [type, setType] = useState('Transaction');
@@ -37,6 +37,10 @@ export default function Transaction() {
          borderRadius: "30px",
     }
 
+    const backHandler= ()=>{
+        setTogglePage(true);
+    }
+
 
     // useEffect(() => {
     //     console.log("renderr")
@@ -46,8 +50,10 @@ export default function Transaction() {
     <div className={Styles.transactionMain}>
 
     <Container className={Styles.container} style={rootStyle}>
+        <div className={Styles.topButtonContainer}>
         <h2>{type}</h2>
-
+        <h2 className={Styles.backButton} onClick={backHandler}>X</h2>
+        </div>
         <form noValidate autoComplete='off' onSubmit={(e)=>handleSubmit(e,formInfo, error)} className={Styles.form}>
 
         <div className={Styles.topTexts}>
