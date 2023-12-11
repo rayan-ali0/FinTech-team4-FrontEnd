@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const handleOnlyNumbers = (event, setInputValue, setError)=>{
     let value = event.target.value;
     
@@ -10,7 +12,7 @@ export const handleOnlyNumbers = (event, setInputValue, setError)=>{
       return;
 }
 
-export const handleSubmit = (e, formInfo, error)=>{
+export const handleSubmit = async (e, formInfo, error)=>{
     e.preventDefault();
 
     // console.log(amount);
@@ -18,7 +20,11 @@ export const handleSubmit = (e, formInfo, error)=>{
         if(error)  {
             console.log("invalid Amount!")
         } else {
-            console.log(formInfo);
+            try{
+            await axios.post(`${process.env.REACT_APP_PATH}/create/transaction`, {formInfo});
+            } catch (error) {
+                console.log(error.message);
+            }
         }
     } else {
         console.log("incomplete!")

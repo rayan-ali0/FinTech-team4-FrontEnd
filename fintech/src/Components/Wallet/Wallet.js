@@ -13,7 +13,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {} from '../../Components/depositModal/Deposit'
 import { Box, InputAdornment, Modal, TextField, Typography } from '@mui/material';
 import { handleOnlyNumbers, handleSubmit } from '../depositModal/utils';
-export default function Wallet({ id }) {
+export default function Wallet({ id, setTogglePage}) {
     const [userId, setUserId] = useState(id)
     const [userWallet, setUserWallet] = useState()
     const [userTransactions, setUserTransactions] = useState()
@@ -45,6 +45,12 @@ export default function Wallet({ id }) {
                 console.error("Error fetching Recents Transactions:", error);
             });
     }
+
+
+const transactionHandler=()=>{
+    setTogglePage(false);
+    console.log("set to false")
+}
 
 
     useEffect(() => {
@@ -126,10 +132,11 @@ export default function Wallet({ id }) {
                                         background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`, color: "white", '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" }, '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
                                     }}   >Withdraw</Button>
-                                    <Button variant="contained" sx={{
+                                    <Button onClick={transactionHandler}
+                                    variant="contained" sx={{
                                         background: `rgba(40, 87, 254, 0.48)`, height: `3em`, width: `28%`, color: "white", '@media(max-width: 950px)': { fontSize: '0.8em', width: "30%" }, '@media(max-width: 650px)': { fontSize: '0.7em', width: "32%" }
 
-                                    }} >     Transfer
+                                    }} >     Send
                                     </Button>
 
                                 </div>
