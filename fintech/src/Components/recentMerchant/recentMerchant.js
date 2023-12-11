@@ -104,7 +104,7 @@ const fetchRecentsUser= async()=>{ // all recents
     }
     }
     catch(error){
-    console.log('error fetching'+error)
+    console.log('error fetching'+error.message)
     }
     }
 

@@ -280,8 +280,8 @@ export default function Wallet({ id }) {
                         </section>
                     </div>
                     <div className={styles.chartsHolder} >
-                        <WalletCards type={'Income'} />
-                        <WalletCards  type={'Outcome'}/>
+                        <WalletCards type='Income'/>
+                        <WalletCards  type='Outcome'/>
                         {/* <WalletCards /> */}
                     </div>
                 </div>

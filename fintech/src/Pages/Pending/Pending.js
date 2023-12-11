@@ -7,9 +7,11 @@ import styles from '../../Components/Table/TableComponent.module.css'
 import axios from 'axios';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import {useUserContext} from '../../Auth/UserContext'
 
 
 export default function ToolbarGrid() {
+  const { myUser, signin, signout } = useUserContext();
 
   const [transactions, setTransactions]=useState([])
   const [id, setId]=useState(5)
@@ -20,7 +22,7 @@ export default function ToolbarGrid() {
     try {
       const result= await axios.get(`${process.env.REACT_APP_PATH}/transaction/read/transaction/byId`,{
         params:{
-            userId:8,
+            userId:myUser.id,
           
         }})
         if(result){
@@ -131,6 +133,8 @@ export default function ToolbarGrid() {
     },
   ]    
 
+  let columnss = myUser.role === 'merchant' ? columns.filter(column => column.field !== 'SellerId') : columns;
+
   const myCustomData = [
     {
       id: 0, // Use 0 as a special ID for the loading row
@@ -157,7 +161,7 @@ export default function ToolbarGrid() {
     <div style={{  width: '80%', margin: 'auto', height: "700px", marginTop: "3rem" }}>
     <DataGrid
       rows={rowsWithEmptyRow}
-      columns={columns}
+      columns={columnss}
       pagination
       pageSize={5}
       fontSize={20}
