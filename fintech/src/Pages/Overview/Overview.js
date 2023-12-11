@@ -7,7 +7,6 @@ import Styles from "./overview.module.css"
 import ToolbarGrid from '../../Components/Table/Table';
 import BasicColor from '../../Components/Charts/Charts';
 import HiddenLegend from '../../Components/charts2/CircularChart';
-// import recentMerchant from '../../Components/recentMerchant/recentMerchant';
 import RecentMerchant from '../../Components/recentMerchant/recentMerchant';
 import DashCards from '../../Components/dashCards/DashCards'
 import { useUserContext } from '../../Auth/UserContext';
@@ -21,11 +20,9 @@ const seriesA = {
 
 export default function BasicStacking() {
 
+  const { myUser, signin, signout } = useUserContext();
+  const [role,setRole]=React.useState(myUser.role)
 
-
-  const [role,setRole]=React.useState("merchant")
-  const {myUser} = useUserContext();
-  console.log("this is my user",myUser);
   return (
     <>
     {
@@ -57,7 +54,7 @@ export default function BasicStacking() {
 </div>
 </div>
 <div className={Styles.merchantflex2}>
-<RecentMerchant role={role}/>
+<RecentMerchant />
 
 </div>
     </div>
@@ -73,7 +70,7 @@ export default function BasicStacking() {
 <BasicColor />
 </div>
 <div className={Styles.cardsMerchants}>
-  <div className={Styles.cardMerchant} style={{border:"1px solid red"}}>
+  <div className={Styles.cardMerchant} >
   <DashCards />
 
   </div>
@@ -84,15 +81,46 @@ export default function BasicStacking() {
 </div>
 </div>
 <div className={Styles.merchantflex2}>
-<RecentMerchant role={role}/>
+<RecentMerchant />
 
 </div>
     </div>
       )
       :
-      (<h1>
-        admin
-      </h1>)
+      (
+
+        <div style={{margin:"2rem auto",width:"100%",height:"90%"}} className={Styles.overviewHolder}>
+
+<div className={Styles.merchantflex1}>
+<div className={Styles.chartMerchant}>
+<BarChart
+    sx={{ borderRadius:"15px" ,background:"#140952"}}
+      width={500}
+      height={389}
+      series={[
+        { ...seriesA, stack: 'total' ,color:"blue"},
+      
+      ]}
+    />
+    <HiddenLegend />
+</div>
+<div className={Styles.cardsMerchants}>
+  <div className={Styles.cardMerchant}>
+  <DashCards />
+
+  </div>
+  <div className={Styles.cardMerchant}  >
+  <DashCards  />
+
+  </div>
+</div>
+</div>
+<div className={Styles.merchantflex2}>
+<RecentMerchant/>
+
+</div>
+    </div>
+      )
       )
     }
     </>

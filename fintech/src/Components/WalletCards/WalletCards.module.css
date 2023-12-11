@@ -11,13 +11,17 @@ height: 100%;
 }
 
 .chartSection , .nbSection{
-    width:50%;
+    /* width:50%; */
     border-radius: 30px;
 }
-/* .chartSection{
-    border: 1px solid red;
-   
-} */
+.chartSection{
+    /* border: 1px solid red; */
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .nbSection{
     /* border: 1px solid red; */
     display: flex;
@@ -26,6 +30,7 @@ height: 100%;
     font-size: 1.5em;
     justify-content: center;
     align-items: center;
+    width :35%;
 }
 .moneyTransfer , .moneyTransferAmount{
     height: 30%;

@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Styles from "./profile.module.css"
-import Pic from "../../Assets/profile_user.jpg"
-import background from "../../Assets/159044-ipad-apple-ipad_air-ipad_air_4_2020-apples-3840x2160 1.png"
 import { TextField, Button, Typography } from '@mui/material'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios'
 import Input from '@mui/material/Input'
+import  {useUserContext}  from '../../Auth/UserContext';
 
 const Profile = () => {
+  const { myUser, signin, signout } = useUserContext();
   const [editPhotoLoading,setEditPhotoLoading]=useState(false)
-  const [userProfile, setUserProfile] = useState(null)
+  const [userProfile, setUserProfile] = useState(myUser)
   const [loading, setLoading] = useState(true)
-  const [formData, setFormData] = useState(null)
   const [editLoading, setEditLoading] = useState(false)
+
+
   const fetchProfile = async () => {
-    await axios.get(`${process.env.REACT_APP_PATH}/user/read/18`)
+    await axios.get(`${process.env.REACT_APP_PATH}/user/read/${myUser.id}`)
       .then((res) => {
+        console.log("fetchigg")
+
         setUserProfile(res.data);
         console.log("fetchinggg")
         console.log(res.data)
@@ -23,31 +25,33 @@ const Profile = () => {
       })
       .catch((error) => {
         console.error("Error fetching Profile:", error);
+        setLoading(false)
+
       });
   }
 
   useEffect(() => {
     fetchProfile()
-    // console.log(`${process.env.REACT_APP_PATH}/${userProfile.pic}`)
   }
     , []
   )
+
   const updateProfile = async () => {
     console.log("updatingg...")
     setEditLoading(true)
-    const username = document.querySelector('#username').value.trim()
-    const email = document.querySelector('#email').value.trim()
+    // const username = document.querySelector('#username').value.trim()
+    // const email = document.querySelector('#email').value.trim()
     const password = document.querySelector('#password').value.trim()
     const name = document.querySelector('#name').value.trim()
 
     console.log(name)
-    console.log(username)
-    console.log(email)
+    // console.log(username)
+    // console.log(email)
     console.log(password === '')
 
     const requestedData = {
-      username: username,
-      email: email,
+      // username: username,
+      // email: email,
       name: name
     }
 
@@ -56,34 +60,21 @@ const Profile = () => {
     }
     
     console.log(requestedData)
-
+    
     try {
-      const res = await axios.put(`${process.env.REACT_APP_PATH}/user/update/18`, requestedData)
+      const res = await axios.put(`${process.env.REACT_APP_PATH}/user/update/${myUser.id}`, requestedData)
       if (res) {
         console.log('profile updated!!')
-        fetchProfile()
+        await fetchProfile()
+        setEditLoading(false)
+
       }
 
     } catch (error) {
       console.error("Error updating Profile:", error);
-    }
-    finally {
       setEditLoading(false)
 
     }
-
-
-    // await axios.put(`${process.env.REACT_APP_PATH}/user/update/18`, requestedData)
-    //   .then((res) => {
-    //     console.log('profile updated!!')
-    //     fetchProfile()
-    //     setEditLoading(false)
-    //   })
-    //   .catch((error) => {
-    //     setEditLoading(false)
-    //     console.error("Error updating Profile:", error);
-    //   });
-
 
   }
   const handleFileChange=(event)=>{
@@ -99,7 +90,7 @@ try{
 const formData=new FormData()
 formData.append('profile',file)
 
-const res=await axios.patch(`${process.env.REACT_APP_PATH}/user/update/pic/18`,formData,{
+const res=await axios.patch(`${process.env.REACT_APP_PATH}/user/update/pic/${myUser.id}`,formData,{
   headers:{
     'Content-Type':'multipart/form-data'
   }
@@ -126,14 +117,12 @@ setEditPhotoLoading(false)
         <div className={Styles.mid}>
 
           <div className={Styles.pic}>
-            {/* <img src={background} className={Styles.img}></img> */}
           </div>
           <div className={Styles.left}>
             <form className={Styles.form} style={{ display: "flex",marginTop:"", flexDirection: "column", color: "white", width: "60%", height: "80%" }}>
-              {/* <ArrowBackIcon sx={{ color: "#253B8E", cursor: "pointer" }}></ArrowBackIcon> */}
 
               <Typography variant="h4" sx={{ alignSelf: "center", color: "white",width:"200px",height:"200px"}}>     
-                       <img src={`${process.env.REACT_APP_PATH}/${userProfile.pic}`} className={Styles.image} alt="user profile"></img>
+                       <img src={`${process.env.REACT_APP_PATH}/${myUser.pic}`} className={Styles.image} alt="user profile"></img>
               </Typography>
               <label htmlFor="file-input" style={{ display: "flex",
             justifyContent: "center",
@@ -149,7 +138,7 @@ setEditPhotoLoading(false)
             width:"50%" ,
             alignSelf: "center",
 
-            border:"1px solid white",// hide the default file input
+            border:"1px solid white",
           }}
           id="file-input"
         />
@@ -174,10 +163,9 @@ setEditPhotoLoading(false)
               backgroundColor: "#4566C1",
               color: "white"
             },
-            // Add additional styles as needed to match your button
           }}
         >
-          { editPhotoLoading?'Updating ..':'Update Photo'} {/* Display filename or default text */}
+          { editPhotoLoading?'Updating ..':'Update Photo'} 
         </Button>
       </label>
       {/* </div> */}
@@ -188,10 +176,10 @@ setEditPhotoLoading(false)
                 id="name"
                 variant='outlined'
                 InputProps={{
-                  style: { color: 'white' }, // Color of the input value
+                  style: { color: 'white' }, 
                 }}
                 InputLabelProps={{
-                  style: { color: 'white' }, // Color of the placeholder
+                  style: { color: 'white' },
                 }}
 
                 sx={{
@@ -204,7 +192,7 @@ setEditPhotoLoading(false)
                   '&:hover': {
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: 'white', // Border color on hover
+                        borderColor: 'white', 
                       },
                     },
                 }
@@ -219,10 +207,10 @@ setEditPhotoLoading(false)
                 id="username"
                 variant='outlined'
                 InputProps={{
-                  style: { color: 'white' }, // Color of the input value
+                  style: { color: 'white' }, 
                 }}
                 InputLabelProps={{
-                  style: { color: 'white' }, // Color of the placeholder
+                  style: { color: 'white' }, 
                 }}
                 sx={{
                   width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
@@ -235,7 +223,7 @@ setEditPhotoLoading(false)
                   '&:hover': {
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: 'white', // Border color on hover
+                        borderColor: 'white',
                       },
                     },
                 }
@@ -250,10 +238,10 @@ setEditPhotoLoading(false)
                 id="email"
                 variant='outlined'
                 InputProps={{
-                  style: { color: 'white' }, // Color of the input value
+                  style: { color: 'white' },
                 }}
                 InputLabelProps={{
-                  style: { color: 'white' }, // Color of the placeholder
+                  style: { color: 'white' }, 
                 }}
                 sx={{
                   width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "1rem",
@@ -267,7 +255,7 @@ setEditPhotoLoading(false)
                   '&:hover': {
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: 'white', // Border color on hover
+                        borderColor: 'white', 
                       },
                     },
                 }
@@ -280,10 +268,10 @@ setEditPhotoLoading(false)
                 id="password"
                 required
                 InputProps={{
-                  style: { color: 'white' }, // Color of the input value
+                  style: { color: 'white' }, 
                 }}
                 InputLabelProps={{
-                  style: { color: 'white' }, // Color of the placeholder
+                  style: { color: 'white' }, 
                 }}
                 sx={{
                   width: "100%", backgroundColor: "transparent", color: "white", borderRadius: "10px", height: "3rem", marginBottom: "3rem"
@@ -297,7 +285,7 @@ setEditPhotoLoading(false)
                   '&:hover': {
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: 'white', // Border color on hover
+                        borderColor: 'white', 
                       },
                     },
                 }

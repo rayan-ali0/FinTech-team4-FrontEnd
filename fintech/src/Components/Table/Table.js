@@ -7,17 +7,16 @@ import axios from 'axios';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from '../../Components/Table/TableComponent.module.css'
-import axios from 'axios';
-import DoneIcon from '@mui/icons-material/Done';
-import CloseIcon from '@mui/icons-material/Close';
+import  {useUserContext}  from '../../Auth/UserContext';
 
 
 export default function ToolbarGrid() {
+  const { myUser, signin, signout } = useUserContext();
 
   const [transactions, setTransactions]=useState([])
-  const [id, setId]=useState(5)
+  const [id, setId]=useState(myUser.id)
   const [loading, setLoading]= useState(true)
-  const [role,setRole]=useState('merchant')
+  const [role,setRole]=useState(myUser.role)
 
   const fetchAllTransactions= async()=>{
     try {
@@ -29,9 +28,13 @@ export default function ToolbarGrid() {
         setLoading(false)
       }
       console.log('no data')
+      setLoading(false)
+
 
     } catch (error) {
       console.log('error fetching'+error.message)
+      setLoading(false)
+
     }
   }
 
@@ -39,8 +42,7 @@ export default function ToolbarGrid() {
     try {
       const result= await axios.get(`${process.env.REACT_APP_PATH}/transaction/read/transaction/byId`,{
         params:{
-            userId:8,
-            // status:'accepted, declined'
+            userId:myUser.id,
         }})
         if(result){
           if(role==="merchant"){
@@ -61,11 +63,15 @@ export default function ToolbarGrid() {
        
         }  else{
           console.log('no data')
+          setLoading(false)
+
       }
 
         
     } catch (error) {
       console.log('error fetching'+error.message)
+      setLoading(false)
+
     }
   }
   React.useEffect(() => {
@@ -79,33 +85,29 @@ export default function ToolbarGrid() {
 
   
 
-  // const columns = [
-
-  //   { field: 'id', headerName: 'ID', width: 70 },
-  //   { field: 'name', headerName: 'Name', width: 150 },
-  //   { field: 'age', headerName: 'Age', width: 90 },
-  //   { field: 'BuyerId', headerName: 'userId', width: 90 },
-
- 
-
-
-  //   // Add more columns as needed
-  // ]; 
-
   const commonColumns = [
-    { field: 'id', headerName: 'ID', width: 115 },
-    { field: 'BuyerId', headerName: 'Buyer', width: 115 },
-    { field: 'SellerId', headerName: 'Seller', width: 115 },
-    { field: 'amountUSD', headerName: 'USD', width: 115 },
-    { field: 'amountUSDT', headerName: 'USDT', width: 115 },
-    { field: 'type', headerName: 'Type', width: 115 },
-    { field: 'status', headerName: 'Status', width: 115 },
-    { field: 'PromotionId', headerName: 'Promotion Used', width: 115 },
-    { field: 'createdAt', headerName: 'Date', width: 115 },
+    { field: 'id', headerName: 'ID',width:100},
+    { field: 'BuyerId', headerName: 'Buyer' ,width:100,renderCell: (params) => (params.value===myUser.id? 
+      <span style={{color:"grey"}}>me</span>
+      :params.value|| '--')},
+    { field: 'SellerId', headerName: 'Seller' , width:100,renderCell: (params) => (params.value===myUser.id? 
+      <span style={{color:"grey"}}>me</span>
+      :params.value|| '--') },
+    { field: 'amountUSD', headerName: 'USD',width:140 , renderCell: (params) => (params.value || '--')},
+    { field: 'amountUSDT', headerName: 'USDT' ,width:140, renderCell: (params) => (params.value || '--')},
+    { field: 'type', headerName: 'Type' ,width:180, renderCell: (params) => (params.value || '--') },
+    { field: 'status', headerName: 'Status',width:180, renderCell: (params) => (params.value?params.value==="accepted"?
+    <span style={{color:"green"}} >{params.value}</span>:
+    params.value==="declined"? <span style={{color:"red"}}>{params.value}</span>:
+    <span style={{color:"white"}}>{params.value}</span>
+    || '--':'--') },
+    { field: 'Promotion', headerName: 'Promotion',width:150 , renderCell: (params) => (params.value? params.value.code || '--':'--')},
+    { field: 'createdAt', headerName: 'Date' ,width:220, renderCell: (params) => (params.value?params.value.substring(0,19).replace('T',' ') || '--':'--')},
   ];
   
-  const columns = role === 'merchant' ? commonColumns.filter(column => column.field !== 'SellerId') : commonColumns;
-  
+  let columns = role === 'merchant' ? commonColumns.filter(column => column.field !== 'SellerId') : commonColumns;
+
+
   const myCustomData = [
     {
       id: 0, // Use 0 as a special ID for the loading row
@@ -115,15 +117,10 @@ export default function ToolbarGrid() {
     },
     { id: '', name: 'Abdulaziz Doe', age: 25 },
 
-    // Add more rows as needed
   ];
   
-  // const { data } = useDemoData({
-  //   dataSet: 'Commodity',
-  //   rowLength: 10,
-  //   maxColumns: 6,
-  // });
-  const emptyRow = { id: 0};
+
+  const emptyRow = { id: 'Loading...'};
 
   const rowsWithEmptyRow = loading ? [emptyRow, ...transactions] : transactions;
 
@@ -138,7 +135,7 @@ export default function ToolbarGrid() {
       fontSize={20}
       rowsPerPageOptions={[5, 10, 20]}
       components={{
-        Toolbar: CustomToolbar, // Use a custom toolbar component
+        Toolbar: CustomToolbar, 
       }}
       sx={{
         fontSize: "17px",

@@ -4,12 +4,24 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import axios from 'axios';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
-
+import  {useUserContext}  from '../../Auth/UserContext';
+import {useNavigate} from 'react-router-dom'
 
 const RecentMerchant = ({role}) => {
 const [recents,setRecents]=useState(null)
 const [loading,setLoading]=useState(true)
-const [id,setId]=useState(5)
+const { myUser, signin, signout } = useUserContext();
+
+const navigate=useNavigate()
+const navigateToReecents=()=>{
+if(myUser.role==="merchant"){
+    navigate('/pending')
+}
+if(myUser.role==="user"){
+    navigate('/transaction')
+}
+}
+
 const approveTransaction=async (id)=>{
 try{
     const res=await axios.put(`${process.env.REACT_APP_PATH}/update/transaction`,null,{
@@ -58,7 +70,7 @@ const fetchRecentsMerchant= async()=>{//Pendinggg
 try{
 const res=await axios.get(`${process.env.REACT_APP_PATH}/transaction/getlastPending`,{
     params:{
-        userId:5
+        userId:myUser.id
     }
 })
 if(res){
@@ -79,7 +91,7 @@ const fetchRecentsUser= async()=>{ // all recents
     try{
     const res=await axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction`,{
         params:{
-            userId:8
+            userId:myUser.id
         }
     })
     if(res){
@@ -97,10 +109,10 @@ const fetchRecentsUser= async()=>{ // all recents
     }
 
 useEffect(()=>{
-    if(role=== "merchant"){
+    if(myUser.role=== "merchant"){
     fetchRecentsMerchant()
     }
-    else if(role ==="user"){
+    else if(myUser.role ==="user"){
         fetchRecentsUser()
     }
 },[])
@@ -112,7 +124,7 @@ useEffect(()=>{
                 <span style={{ fontWeight: "400", fontSize: "2em", color: "white" }}>
                     Recents
                 </span>
-                <span style={{ fontSize: "1.5em", color: "white" }}>
+                <span style={{ fontSize: "1.5em", color: "white",cursor:"pointer" }} onClick={navigateToReecents}>
                     view all<ArrowForwardIosIcon style={{fontSize:"18px"}}/>
                 </span>
             </div>
@@ -122,7 +134,7 @@ useEffect(()=>{
                         <tr>
                             <th>Transaction ID</th>
                             <th>Date</th>
-                            {role==="merchant"?
+                            {myUser.role==="merchant"?
                             (
                                 <th>Buyer</th>
                             ):(
@@ -132,8 +144,7 @@ useEffect(()=>{
                             
                             <th>USDT</th>
                             <th>USD</th>
-                            {/* <th>Promotion</th> */}
-                            {role==="merchant"?
+                            {myUser.role==="merchant"?
                             (
                                 <th>Promotion</th>
                             ):(
@@ -141,7 +152,7 @@ useEffect(()=>{
                             )
                         }
                             <th>status</th>
-                            {role==="merchant"?
+                            {myUser.role==="merchant"?
                             (
                                 <th>Actions</th>
                             ):(
@@ -158,14 +169,14 @@ useEffect(()=>{
     <tr style={{ borderBottom:index===recents.length-1?'none':'1px solid white'}} key={index}>
     <td>{recent.id}</td>
     <td>{recent.createdAt.substring(0,19).replace('T',' ')}</td>
-    {role==="merchant"?
+    {myUser.role==="merchant"?
     (<td>{recent.BuyerId}</td>):
     (
         recent.type==="deposit"?
         (<td>ME</td>):
         (recent.type==="transfer"?
         (
-            recent.SellerId===id?(<td>To {recent.BuyerId}</td>):(<td>From {recent.SellerId}</td>)
+            recent.SellerId===myUser.id?(<td>To {recent.BuyerId}</td>):(<td>From {recent.SellerId}</td>)
         ):
         (
             <td>{recent.SellerId}</td>
@@ -174,10 +185,9 @@ useEffect(()=>{
     
     <td>{recent.amountUSDT } </td>
     <td>{recent.amountUSD}</td>
-    {role==="merchant"?recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>):null}
-    {/* {recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>)} */}
+    {myUser.role==="merchant"?recent.PromotionId?(<td>{recent.Promotion.code}</td>):(<td>--</td>):null}
     <td style={{color:recent.status==="declined"?"red":recent.status==="accepted"?"green":"white"}}>{recent.status}</td>
-    {role==="merchant"?
+    {myUser.role==="merchant"?
     (<td>
         <DoneIcon style={{color:"green",cursor:"pointer"}} onClick={()=>approveTransaction(recent.id)}>
     </DoneIcon> 
@@ -210,7 +220,7 @@ useEffect(()=>{
         </div>)
         :
         (
-            <div> <h1>loadingg..</h1></div>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}> <h1 style={{color:"white",display:"inline"}}>Loadingg..</h1></div>
         )
 
         }

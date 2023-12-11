@@ -17,7 +17,6 @@ line {
 .merchantflex1 , .merchantflex2{
     height: 49%;
     width: 92%;
-    /* border: 3px solid red; */
     margin: 0 auto;
 }
 
@@ -30,12 +29,10 @@ line {
     display: flex;
 }
 .chartMerchant , .cardsMerchants{
-    /* border: 1px solid yellow; */
     height: 100%;
 }
 .chartMerchant{
     width: 70%;
-        /* border: 1px solid yellow; */
         display: flex;
         flex-direction: row;
         gap:1rem
@@ -50,9 +47,7 @@ line {
     align-items: flex-end;
 }
 .cardMerchant{
-    /* border: 3px solid white; */
     height: 48%;
-    /* justify-content: space-between; */
     align-items: center;
 
 }

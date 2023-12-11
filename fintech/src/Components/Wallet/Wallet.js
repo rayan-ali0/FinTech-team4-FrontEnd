@@ -13,17 +13,20 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {} from '../../Components/depositModal/Deposit'
 import { Box, InputAdornment, Modal, TextField, Typography } from '@mui/material';
 import { handleOnlyNumbers, handleSubmit } from '../depositModal/utils';
+import  {useUserContext}  from '../../Auth/UserContext';
+
+
 export default function Wallet({ id }) {
-    const [userId, setUserId] = useState(id)
+    const { myUser, signin, signout } = useUserContext();
     const [userWallet, setUserWallet] = useState()
     const [userTransactions, setUserTransactions] = useState()
     const [walletLoading, setWalletLoading] = useState(true)
     const [recentsLoading, setRecentsLoading] = useState(true)
 
     /*********************/
-    const fetchWallet = async(userId) => {
+    const fetchWallet = async() => {
 
-        await axios.get(`${process.env.REACT_APP_PATH}/wallet/readByUser/8`)
+        await axios.get(`${process.env.REACT_APP_PATH}/wallet/readByUser/${myUser.id}`)
             .then((res) => {
                 setUserWallet(res.data);
                 console.log(res.data)
@@ -34,8 +37,8 @@ export default function Wallet({ id }) {
             });
     }
 
-    const fetchRecents =async (userId) => {
-       await axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction?userId=8`)
+    const fetchRecents =async () => {
+       await axios.get(`${process.env.REACT_APP_PATH}/read/lastTransaction?userId=${myUser.id}`)
             .then((res) => {
                 setUserTransactions(res.data);
                 console.log(res.data)
@@ -48,9 +51,9 @@ export default function Wallet({ id }) {
 
 
     useEffect(() => {
-        fetchWallet(userId)
+        fetchWallet()
         fetchRecents()
-    }, [userId]);
+    }, [myUser.id]);
     /******************* */
 
     const useStyle = {
@@ -273,59 +276,13 @@ export default function Wallet({ id }) {
 </Modal>
 
 
-
-
-
-
-
-
-                                {/* <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /> </span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div>
-
-                                <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><NorthIcon sx={{ color: 'red', fontSize: '1.8em' }} /></span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div> */}
-
-                                 {/* <div className={styles.recentOne}>
-                                     <span className={styles.recentArrow}><MoreHorizIcon sx={{ color: 'white', fontSize: '1.8em' }} /></span>
-                                     <span>withdraw</span>
-                                     <span>23:10:45</span>
-                                     <span>$44</span>
-                                     <span>pending</span>
-                                </div>  */}
-
-                                {/* <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}><MoreHorizIcon sx={{ color: 'white', fontSize: '1.8em' }} /></span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div>
-
-                                <div className={styles.recentOne}>
-                                    <span className={styles.recentArrow}> <SouthIcon sx={{ color: 'green', fontSize: '1.8em' }} /></span>
-                                    <span>withdraw</span>
-                                    <span>23:10:45</span>
-                                    <span>$44</span>
-                                    <span>pending</span>
-                                </div> */}
-
                             </article>
                         </section>
                     </div>
                     <div className={styles.chartsHolder} >
-                        <WalletCards />
-                        <WalletCards />
-                        <WalletCards />
+                        <WalletCards type={'Income'} />
+                        <WalletCards  type={'Outcome'}/>
+                        {/* <WalletCards /> */}
                     </div>
                 </div>
 

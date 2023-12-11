@@ -20,7 +20,8 @@ import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsAc
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 /*********** */
-
+import  {useUserContext}  from '../../Auth/UserContext';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { capitalize } from '@mui/material';
 /*********** */
@@ -71,12 +72,21 @@ const capitalizeFirstLetter = (string) => {
 
 export default function NavBar() {
 /*********** */
+const navigate=useNavigate()
 const location=useLocation();
 var currentLocation= "Overview";
 if(location.pathname.substring(1)){
    currentLocation= capitalizeFirstLetter(location.pathname.substring(1));
 }
+const { myUser, signin, signout } = useUserContext();
 
+const signOut=()=>{
+  signout();
+}
+
+const navigateToProfile=()=>{
+navigate('/profile')
+}
 /*********** */
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -121,8 +131,8 @@ if(location.pathname.substring(1)){
       onClose={handleMenuClose}
 
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={navigateToProfile}>Profile</MenuItem>
+      <MenuItem  onClick={()=>{signOut()}}>Log Out</MenuItem>
     </Menu>
   );
 
@@ -157,7 +167,7 @@ if(location.pathname.substring(1)){
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -222,7 +232,7 @@ if(location.pathname.substring(1)){
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={0} color="error">
                 {/* <NotificationsIcon /> */}
                 <NotificationsActiveOutlinedIcon sx={{width:'40px',height:'40px'}}/>
               </Badge>

@@ -10,9 +10,6 @@ const [userId,setUserId]=useState(1)
     return (
 
             <div className={styles.main}>
-                {/* <div className={styles.navBar}>
-                    <NavBar />
-                </div  > */}
                 <div className={styles.walletHolderMain}>
                     <Wallet id={userId} />
                 </div>

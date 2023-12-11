@@ -87,7 +87,7 @@ const Layout =()=>{
                 element:<Pending />
             },
             {
-                path:'/admin',
+                path:'/admins',
                 element:<Admin />
             },
             // {

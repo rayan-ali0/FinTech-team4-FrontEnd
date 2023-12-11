@@ -22,18 +22,28 @@ import {Link} from "react-router-dom"
 import { useState } from 'react';
 import { flushSync } from 'react-dom';
 import PendingIcon from '@mui/icons-material/Pending';
-
+import { useLocation } from 'react-router-dom';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import  {useUserContext}  from '../../Auth/UserContext';
 
 const drawerWidth = 240;
 
 export default function ClippedDrawer() {
-  const [ activeSide, setActiveSide]= useState("Transaction")
-  const [role,setRole]=useState('admin')
-  const handleClick=(filter)=>{
-    setActiveSide(filter)
- 
-  }
+  const { myUser, signin, signout } = useUserContext();
 
+  const [ activeSide, setActiveSide]= useState('/')
+  const [role,setRole]=useState(myUser.role)
+console.log(myUser)
+  const location=useLocation();
+ 
+
+React.useEffect(()=>{
+  const currentLocation= location.pathname
+  setActiveSide(currentLocation)
+  console.log(activeSide==="/transaction")
+
+},[location.pathname])
   return (
     <>
     {role!=="admin"?
@@ -59,9 +69,9 @@ export default function ClippedDrawer() {
       </Toolbar>
       <Box sx={{ overflow: 'auto', flexDirection: 'column' }}>
         <List sx={{ display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
-          <ListItem disablePadding>
-          <Link to='/' style={{textDecoration:"none", color:"white", }}>
-            <ListItemButton key='Dashboard' className={`${Style.activee} ${activeSide === "Dashboard" ? Style.active:""}`} onClick={()=> handleClick('Dashboard')} sx={{width:"125%"}} >
+          <ListItem disablePadding className={`${activeSide === "/" ? Style.active:""}`}  style={{width:"100%"}} >
+          <Link to='/' style={{textDecoration:"none", color:"white" }}  >
+            <ListItemButton key='Dashboard'   sx={{width:"125%"}} >
               
               <ListItemIcon>
                 <DashboardIcon sx={{color:"white"}}/>
@@ -73,9 +83,9 @@ export default function ClippedDrawer() {
             </Link>
           </ListItem>
 
-          <ListItem disablePadding>
-          <Link to='transaction' style={{textDecoration:"none", color:"white"}}>
-            <ListItemButton key="Transaction" className={`${Style.activee} ${activeSide === "Transaction" ?  "active":""}`} onClick={()=> handleClick('Transaction')} sx={{width:"120%" }}>
+          <ListItem disablePadding className={`${activeSide === "/transaction" ? Style.active:""}`}  style={{width:"100%"}}>
+          <Link to='/transaction' style={{textDecoration:"none", color:"white" }}  >
+            <ListItemButton key="Transaction" className={` ${activeSide === "/transaction" ?  "active":""}`}  sx={{width:"120%" }}>
               <ListItemIcon>
                 <AccountBalanceWalletIcon sx={{color:"white"}}/>
               </ListItemIcon>
@@ -85,7 +95,7 @@ export default function ClippedDrawer() {
           </ListItem>
 {
 role==="merchant"?
-(<ListItem disablePadding>
+(<ListItem disablePadding className={`${activeSide === "/pending" ? Style.active:""}`}  style={{width:"100%"}}>
   <Link to='/pending' style={{textDecoration:"none" , color:"white"}}>
     <ListItemButton sx={{width:"140%"}}>
       <ListItemIcon>
@@ -104,7 +114,7 @@ null
 }
           
 
-          <ListItem disablePadding>
+          <ListItem disablePadding className={`${activeSide === "/wallet" ? Style.active:""}`}  style={{width:"100%"}}>
           <Link to='/wallet' style={{textDecoration:"none", color:"white"}}>
             <ListItemButton sx={{width:"130%"}}>
               <ListItemIcon>
@@ -119,7 +129,7 @@ null
         <Divider />
 
         <List sx={{ display: "flex", flexDirection: "column", gap: '1rem' }}>
-          <ListItem disablePadding>
+          <ListItem disablePadding className={`${activeSide === "/profile" ? Style.active:""}`}  style={{width:"100%"}}>
           <Link to='/profile' style={{textDecoration:"none", color:"white"}}>
             <ListItemButton sx={{width:"150%"}}>
               <ListItemIcon>
@@ -160,9 +170,9 @@ null
     </Toolbar>
     <Box sx={{ overflow: 'auto', flexDirection: 'column' }}>
       <List sx={{ display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
-        <ListItem disablePadding>
+        <ListItem disablePadding className={`${activeSide === "/" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/' style={{textDecoration:"none", color:"white", }}>
-          <ListItemButton key='Dashboard' className={` ${activeSide === "Dashboard" ? Style.active:""}`} onClick={()=> handleClick('Dashboard')} sx={{width:"125%"}} >
+          <ListItemButton key='Dashboard' className={` ${activeSide === "Dashboard" ? Style.active:""}`} sx={{width:"125%"}} >
             
             <ListItemIcon>
               <DashboardIcon sx={{color:"white"}}/>
@@ -175,31 +185,31 @@ null
         </ListItem>
 
      
-        <ListItem disablePadding>
+        <ListItem disablePadding className={`${activeSide === "/admins" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/admins' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"130%"}}>
             <ListItemIcon>
-              <WalletIcon  sx={{color:"white"}} />
+              <AdminPanelSettingsIcon  sx={{color:"white"}} />
             </ListItemIcon>
             <ListItemText primary="Admins" />
           </ListItemButton>
           </Link>
         </ListItem>
         
-        <ListItem disablePadding>
+        <ListItem disablePadding className={`${activeSide === "/users" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/users' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"130%"}}>
             <ListItemIcon>
-              <WalletIcon  sx={{color:"white"}} />
+              <SupervisorAccountIcon  sx={{color:"white"}} />
             </ListItemIcon>
             <ListItemText primary="Users" />
           </ListItemButton>
           </Link>
         </ListItem>
 
-        <ListItem disablePadding>
+        <ListItem disablePadding className={`${activeSide === "/transaction" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/transaction' style={{textDecoration:"none", color:"white"}}>
-          <ListItemButton key="Transaction" className={` ${activeSide === "Transaction" ?  "active":""}`} onClick={()=> handleClick('Transaction')} sx={{width:"120%" }}>
+          <ListItemButton key="Transaction" className={` ${activeSide === "Transaction" ?  "active":""}`}  sx={{width:"120%" }}>
             <ListItemIcon>
               <AccountBalanceWalletIcon sx={{color:"white"}}/>
             </ListItemIcon>
@@ -213,7 +223,7 @@ null
       <Divider />
 
       <List sx={{ display: "flex", flexDirection: "column", gap: '1rem' }}>
-        <ListItem disablePadding>
+        <ListItem disablePadding className={`${activeSide === "/profile" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/profile' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"150%"}}>
             <ListItemIcon>
