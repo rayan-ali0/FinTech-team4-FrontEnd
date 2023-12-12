@@ -2,7 +2,9 @@ import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
+import { useState } from 'react';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import axios from 'axios';
 
 const Tableau10 = [
   '#4e79a7',
@@ -22,7 +24,33 @@ const chartsParams = {
   height: 300,
 };
 export default function BasicColor() {
+  
+  const [outcome, setOutcome]=useState()
+  // const [id, setId]=useState(myUser.id)
+  const [loading, setLoading]= useState(true)
+
   const [color, setColor] = React.useState('#4e79a7');
+
+  const fetchOutcome =async()=>{
+    try {
+      const result= await axios.get(`${process.env.REACT_APP_PATH}/transaction/Outcome`)
+      if (result){
+        setOutcome(result.data)
+        console.log("Outcome fetched successfully", result.data)
+        setLoading(false)
+      }
+      console.log("no dataa")
+      setLoading(false)
+    } catch (error) {
+      console.log('error fetchinggg'+error.message)
+      setLoading(false)
+    }
+
+  }
+
+  React.useEffect(()=>{
+    fetchOutcome()
+  },[])
 
   const handleChange = (event, nextColor) => {
     setColor(nextColor);

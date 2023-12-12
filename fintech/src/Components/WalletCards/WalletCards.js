@@ -5,6 +5,7 @@ import { DoughnutController } from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2'
 import axios from 'axios';
 import {useUserContext} from '../../Auth/UserContext'
+
 export default function WalletCards({ type }) {
   const { myUser, signin, signout } = useUserContext();
 
@@ -57,15 +58,15 @@ export default function WalletCards({ type }) {
             labels: ['Transfer', 'Deposit'],
             datasets: [{
               label: 'Income',
-              data: [Number(firstAmount), Number(secondAmount)],
+              data: [Number(res.data.transferIncome), Number(res.data.depositIncome)],
         
               backgroundColor: [
+                '#253B8E',
                 '#767CE2',
-                '#AAA9FA',
               ],
               borderColor: [
+                '#253B8E',
                 '#767CE2',
-                '#AAA9FA',
               ],
               hoverOffset: 4,
               
@@ -77,22 +78,22 @@ export default function WalletCards({ type }) {
 
         }
         if (role === "merchant") {
-          setFirstAmount(data.transactionIncome)
-          setSecondAmount(data.depositIncome)
+          setFirstAmount(res.data.transactionIncome)
+          setSecondAmount(res.data.depositIncome)
           setLables(['Transaction', 'Deposit'])
           setData(
             {
-              labels: ['Transaction', 'Deposit'],
+              labels: ['Transaction', 'Deposit'] ,
               datasets: [{
                 label:'Income',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionIncome), Number(res.data.depositIncome)],
                 backgroundColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
                 ],
                 borderColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
                 ],
                 hoverOffset: 4,
                 
@@ -127,17 +128,21 @@ export default function WalletCards({ type }) {
           setLables(['Transaction', 'Transfer'])
           setData(
             {
-              labels: ['Transaction', 'Transfer'],
+              labels: ['Transact', 'Transfer'],
               datasets: [{
                 label: 'Outcome',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionOut), Number(res.data.transferOut)],
                 backgroundColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
                 ],
                 borderColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
+                ],
+                color:[
+                  "white",
+                  "white"
                 ],
                 hoverOffset: 4,
               
@@ -148,23 +153,23 @@ export default function WalletCards({ type }) {
 
         }
         if (role === "merchant") {
-          setFirstAmount(data.transactionOut)
-          setSecondAmount(data.transferOut)
+          setFirstAmount(res.data.transactionOut)
+          setSecondAmount(res.data.transferOut)
           setLables(['Transaction', 'Transfer'])
           setData(
             {
               labels: ['Transaction', 'Transfer'],
               datasets: [{
                 label: 'Outcome',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionOut), Number(res.data.transferOut)],
           
                 backgroundColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
                 ],
                 borderColor: [
+                  '#253B8E',
                   '#767CE2',
-                  '#AAA9FA',
                 ],
                 hoverOffset: 4,
                 
@@ -187,7 +192,7 @@ export default function WalletCards({ type }) {
       <section className={styles.chartSection}>
 
         {
-          !loading ? (<Doughnut data={data} style={{width:'97%'}} />)
+          !loading ? (<Doughnut data={data} style={{width:'70%', height:"90%"}} />)
             :
             (<h2>
               loading..

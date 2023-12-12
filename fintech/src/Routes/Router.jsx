@@ -16,7 +16,9 @@ import Pending from "../Pages/Pending/Pending"
 import Users from "../Pages/Users/Users"
 import Admin from "../Pages/Admins/Admins"
 import NotAuthorized from "../Pages/NotAuthorized"
+import AddPromotion from "../Pages/AddPromotion/AddPromotion"
 import Transactions from "../Pages/Transactions"
+import Promotion from "../Pages/Promotion/Promotion"
 
 import PrivateRoute from '../Auth/PrivateRoute'
 
@@ -83,12 +85,20 @@ const Layout =()=>{
                 element:<Wallet />
             },
             {
+                path:'/addpromotion',
+                element:<AddPromotion />
+            },
+            {
                 path:'/pending',
                 element:<Pending />
             },
             {
                 path:'/admins',
                 element:<Admin />
+            },
+            {
+                path:'/promotion',
+                element:<Promotion />
             },
             // {
             //     path:'/withdraw',

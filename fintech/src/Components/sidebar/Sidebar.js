@@ -17,6 +17,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import WalletIcon from '@mui/icons-material/Wallet';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import './sidebar.module.css';
 import {Link} from "react-router-dom"
 import { useState } from 'react';
@@ -68,7 +69,7 @@ React.useEffect(()=>{
         </div>
       </Toolbar>
       <Box sx={{ overflow: 'auto', flexDirection: 'column' }}>
-        <List sx={{ display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
+        <List sx={{ marginLeft:"1rem", display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
           <ListItem disablePadding className={`${activeSide === "/" ? Style.active:""}`}  style={{width:"100%"}} >
           <Link to='/' style={{textDecoration:"none", color:"white" }}  >
             <ListItemButton key='Dashboard'   sx={{width:"125%"}} >
@@ -124,11 +125,22 @@ null
             </ListItemButton>
             </Link>
           </ListItem>
+
+          <ListItem disablePadding className={`${activeSide === "/wallet" ? Style.active:""}`}  style={{width:"100%"}}>
+          <Link to='/promotion' style={{textDecoration:"none", color:"white"}}>
+            <ListItemButton sx={{width:"130%"}}>
+              <ListItemIcon>
+                <LocalOfferIcon  sx={{color:"white"}} />
+              </ListItemIcon>
+              <ListItemText primary="Promotions" />
+            </ListItemButton>
+            </Link>
+          </ListItem>
         </List>
 
         <Divider />
 
-        <List sx={{ display: "flex", flexDirection: "column", gap: '1rem' }}>
+        <List sx={{ marginLeft:"1rem", display: "flex", flexDirection: "column", gap: '1rem' }}>
           <ListItem disablePadding className={`${activeSide === "/profile" ? Style.active:""}`}  style={{width:"100%"}}>
           <Link to='/profile' style={{textDecoration:"none", color:"white"}}>
             <ListItemButton sx={{width:"150%"}}>
@@ -169,7 +181,7 @@ null
       </div>
     </Toolbar>
     <Box sx={{ overflow: 'auto', flexDirection: 'column' }}>
-      <List sx={{ display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
+      <List sx={{marginLeft:"1rem", display: "flex", flexDirection: "column", gap: '1rem', color:"white" , }}>
         <ListItem disablePadding className={`${activeSide === "/" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/' style={{textDecoration:"none", color:"white", }}>
           <ListItemButton key='Dashboard' className={` ${activeSide === "Dashboard" ? Style.active:""}`} sx={{width:"125%"}} >
@@ -222,7 +234,7 @@ null
 
       <Divider />
 
-      <List sx={{ display: "flex", flexDirection: "column", gap: '1rem' }}>
+      <List sx={{ marginLeft:"1rem", display: "flex", flexDirection: "column", gap: '1rem' }}>
         <ListItem disablePadding className={`${activeSide === "/profile" ? Style.active:""}`}  style={{width:"100%"}}>
         <Link to='/profile' style={{textDecoration:"none", color:"white"}}>
           <ListItemButton sx={{width:"150%"}}>

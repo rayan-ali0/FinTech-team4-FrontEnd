@@ -9,6 +9,11 @@ background: linear-gradient(209deg, rgba(0, 44, 201, 0.71) 5.62%, rgba(64, 64, 6
 display: flex;
 height: 100%;
 }
+/* Add this CSS to your stylesheets or style section */
+.your-chart-container-id-or-class .chartjs-render-monitor .chartjs-doughnut-legend li span {
+    color: white !important;
+  }
+  
 
 .chartSection , .nbSection{
     /* width:50%; */
