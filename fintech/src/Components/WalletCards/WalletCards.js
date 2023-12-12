@@ -57,7 +57,7 @@ export default function WalletCards({ type }) {
             labels: ['Transfer', 'Deposit'],
             datasets: [{
               label: 'Income',
-              data: [Number(firstAmount), Number(secondAmount)],
+              data: [Number(res.data.transferIncome), Number(res.data.depositIncome)],
         
               backgroundColor: [
                 '#767CE2',
@@ -77,15 +77,15 @@ export default function WalletCards({ type }) {
 
         }
         if (role === "merchant") {
-          setFirstAmount(data.transactionIncome)
-          setSecondAmount(data.depositIncome)
+          setFirstAmount(res.data.transactionIncome)
+          setSecondAmount(res.data.depositIncome)
           setLables(['Transaction', 'Deposit'])
           setData(
             {
               labels: ['Transaction', 'Deposit'],
               datasets: [{
                 label:'Income',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionIncome), Number(res.data.depositIncome)],
                 backgroundColor: [
                   '#767CE2',
                   '#AAA9FA',
@@ -127,10 +127,10 @@ export default function WalletCards({ type }) {
           setLables(['Transaction', 'Transfer'])
           setData(
             {
-              labels: ['Transaction', 'Transfer'],
+              labels: ['Transactْْ' , 'Transfer'],
               datasets: [{
                 label: 'Outcome',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionOut), Number(res.data.transferOut)],
                 backgroundColor: [
                   '#767CE2',
                   '#AAA9FA',
@@ -148,15 +148,15 @@ export default function WalletCards({ type }) {
 
         }
         if (role === "merchant") {
-          setFirstAmount(data.transactionOut)
-          setSecondAmount(data.transferOut)
-          setLables(['Transaction', 'Transfer'])
+          setFirstAmount(res.data.transactionOut)
+          setSecondAmount(res.data.transferOut)
+          setLables(['Transac', 'Transfer'])
           setData(
             {
-              labels: ['Transaction', 'Transfer'],
+              labels: ['Transactْْ', 'Transfer'],
               datasets: [{
                 label: 'Outcome',
-                data: [Number(firstAmount), Number(secondAmount)],
+                data: [Number(res.data.transactionOut), Number(res.data.transferOut)],
           
                 backgroundColor: [
                   '#767CE2',

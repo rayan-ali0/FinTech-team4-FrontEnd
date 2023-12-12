@@ -10,18 +10,57 @@ import HiddenLegend from '../../Components/charts2/CircularChart';
 import RecentMerchant from '../../Components/recentMerchant/recentMerchant';
 import DashCards from '../../Components/dashCards/DashCards'
 import { useUserContext } from '../../Auth/UserContext';
-
+import axios from 'axios';
+import { useState } from 'react';
 const sample = [1, 10, 30, 50, 70, 90, 100];
 
-const seriesA = {
-  data: [2, 3, 1, 4, 5],
-  label: 'Payment',
-};
+;
 
 export default function BasicStacking() {
 
   const { myUser, signin, signout } = useUserContext();
   const [role,setRole]=React.useState(myUser.role)
+const [weeklydata,setWeeklyData]=useState({})
+const [loading,setLoading]=useState(true)
+const [series,setSeries]=useState([])
+  const fetchWeekly=async()=>{
+
+try{
+const response=await axios.get(`${process.env.REACT_APP_PATH}/fourweeks`,{
+  params:{
+    id:myUser.id
+  }
+})
+if(response){
+setWeeklyData(response.data)
+console.log("weeklyyyyyyyyyyyyyyyyyyyyyyy")
+console.log(response.data)
+setSeries((prevSeries) =>[response.data.threeWeeksAgoIncome,response.data.twoWeeksAgoIncome,response.data.oneWeekAgoIncome,response.data.currentWeekIncome])
+setLoading(false)
+}
+else{
+  console.log('no data available')
+  setLoading(false)
+
+}
+}
+
+catch(error)
+{
+console.log('error'+error.message)
+setLoading(false)
+}
+  }
+
+  React.useEffect(()=>{
+fetchWeekly()
+  },[])
+
+  const seriesA = {
+    data: series,
+    stack: 'total', color: "blue" 
+    }
+  const defaultSeries = { data: [0, 0, 0, 0], stack: 'total', color: "blue" };
 
   return (
     <>
@@ -34,21 +73,22 @@ export default function BasicStacking() {
 <BarChart
     sx={{ borderRadius:"15px" ,background:"#140952"}}
       width={500}
-      height={389}
-      series={[
-        { ...seriesA, stack: 'total' ,color:"blue"},
+      height={470}
+     series={
+        !loading?[
+      seriesA
       
-      ]}
+      ]:[defaultSeries]}
     />
-    <HiddenLegend />
+    <HiddenLegend  />
 </div>
 <div className={Styles.cardsMerchants}>
   <div className={Styles.cardMerchant}>
-  <DashCards />
+  <DashCards  types='Income'/>
 
   </div>
   <div className={Styles.cardMerchant}  >
-  <DashCards  />
+  <DashCards  types='Outcome'/>
 
   </div>
 </div>
@@ -66,16 +106,16 @@ export default function BasicStacking() {
 <div style={{margin:"2rem auto",width:"100%",height:"90%"}} className={Styles.overviewHolder}>
 
 <div className={Styles.merchantflex1}>
-<div className={Styles.chartMerchant}>
-<BasicColor />
+<div className={Styles.chartMerchant} >
+<BasicColor data={weeklydata}/>
 </div>
 <div className={Styles.cardsMerchants}>
   <div className={Styles.cardMerchant} >
-  <DashCards />
+  <DashCards types='Income' />
 
   </div>
   <div className={Styles.cardMerchant}>
-  <DashCards />
+  <DashCards types='Outcome'/>
 
   </div>
 </div>
@@ -97,20 +137,22 @@ export default function BasicStacking() {
     sx={{ borderRadius:"15px" ,background:"#140952"}}
       width={500}
       height={389}
-      series={[
-        { ...seriesA, stack: 'total' ,color:"blue"},
+      series={
+        !loading?[
+        seriesA
       
-      ]}
+      ]:[defaultSeries]
+    }
     />
     <HiddenLegend />
 </div>
 <div className={Styles.cardsMerchants}>
   <div className={Styles.cardMerchant}>
-  <DashCards />
+  <DashCards types='Outcome'/>
 
   </div>
   <div className={Styles.cardMerchant}  >
-  <DashCards  />
+  <DashCards types='Outcome' />
 
   </div>
 </div>

@@ -21,9 +21,11 @@ const chartsParams = {
   margin: { bottom: 20, left: 25, right: 5 },
   height: 300,
 };
-export default function BasicColor() {
+export default function BasicColor({data}) {
   const [color, setColor] = React.useState('#4e79a7');
-
+// const [weekly,setWeekly]=React.useState(data)
+console.log("weekly userrrrr")
+// console.log(weekly)
   const handleChange = (event, nextColor) => {
     setColor(nextColor);
   };
@@ -34,7 +36,7 @@ export default function BasicColor() {
         {...chartsParams}
         series={[
           {
-            data: [15, 23, 18, 19, 13],
+            data: [data.threeWeeksAgoIncome,data.twoWeeksAgoIncome,data.oneWeekAgoIncome,data.currentWeekIncome],
             label: 'income overview',
             color,
           },
